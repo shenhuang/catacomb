@@ -50,6 +50,6 @@
 
 # 作者信息
 
-个人网站：[shenhuang.github.io]
+个人网站：[shenhuang.github.io](shenhuang.github.io)
 
 邮箱：shenhuang@live.ca
