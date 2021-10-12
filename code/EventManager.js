@@ -370,14 +370,22 @@ function ValidSubEvent(event)
         let traitData = event["天赋触发"]
         if(typeof(traitData) != 'number')
         {
-            traitData = traitData.split(',').map(Number)
-            let includeAny = false
-            for(i in traitData)
+            let traitOR = traitData.split(',')
+            let includeANY = false
+            for(i in traitOR)
             {
-                if(CharacterTraits.includes(TRAITS[traitData[i]]))
-                    includeAny = true
+                let traitAND = traitOR[i].split('&').map(Number)
+                let includeALL = true
+                for(j in traitAND)
+                {
+                    let traitItem = traitAND[j]
+                    if(!CharacterTraits.includes(TRAITS[traitItem]))
+                        includeALL = false
+                }
+                if(includeALL)
+                    includeANY = true
             }
-            if(!includeAny)
+            if(!includeANY)
                 return false
         }
         else

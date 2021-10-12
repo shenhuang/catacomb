@@ -270,8 +270,14 @@ function FlashScreen(color)
 	flashScreen.style.backgroundColor = color
 	document.body.appendChild(flashScreen)
 	setTimeout(() => {
-		if(document.body.hasChildNodes(flashScreen))
+		try {
+			if(document.body.hasChildNodes(flashScreen))
 			document.body.removeChild(flashScreen)
+		}
+		catch(e)
+		{
+			
+		}
 	}, FLASH_SCREEN_DURATION)
 }
 
@@ -281,8 +287,14 @@ function LoadFloatMessage(text)
 	FMObject.style.top = `${FLOAT_MESSAGE_HEIGHT}px`
 	document.body.appendChild(FMObject)
 	setTimeout(() => {
-		if(document.body.hasChildNodes(FMObject))
+		try {
+			if(document.body.hasChildNodes(FMObject))
 			document.body.removeChild(FMObject)
+		}
+		catch(e)
+		{
+
+		}
 	}, FLOAT_MESSAGE_DURATION)
 	return FMObject
 }

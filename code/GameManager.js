@@ -1,7 +1,7 @@
 function LoadGame()
 {
-    LoadText("你来到了卡塔窟")
-    LoadText("你会在这里开始你的探险")
+    LoadText("这里是卡塔窟")
+    LoadText("开启你的奇妙历险")
     LoadText("请选择最多三个初始天赋")
     InitTraits()
     LoadTraits()
