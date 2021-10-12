@@ -42,7 +42,7 @@
 
 1.完善游戏的后续内容。
 
-2.将dataconv.py打包成Windows系统可以直接运行的.exe和方便MacOS使用的流程，或者用JavaScript改写相关逻辑，制作一个同功能的HTML页面。
+2.将dataconv.py打包成Windows系统可以直接运行的.exe和方便MacOS使用的流程，或者用JavaScript重写相关逻辑，制作一个同功能的HTML页面。
 
 3.妥善处理配表配错可能产生的各种边际问题。
 
