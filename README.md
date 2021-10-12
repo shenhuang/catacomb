@@ -2,7 +2,7 @@
 
 让爱好者们能够有一个舞台，独立制作属于自己的文字游戏。
 
-这个项目本身也是一个(游戏)[https://shenhuang.github.io/catacomb/catacomb.html]，预计会有255层和隐藏BOSS关，内容大多东拼西凑，熟悉各类ACG作品和流量密码的朋友应该会GET到相关的梗。
+这个项目本身也是一个[游戏](https://shenhuang.github.io/catacomb/catacomb.html)，预计会有255层和隐藏BOSS关，内容大多东拼西凑，熟悉各类ACG作品和流量密码的朋友应该会GET到相关的梗。
 
 ## 项目动机
 
