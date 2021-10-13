@@ -205,8 +205,6 @@ function LoadChoiceEvents(events, eventsTrait)
 {
     if(events == null && eventsTrait == null)
         return
-    console.log(events)
-    console.log(eventsTrait)
     if(events.length == 0 && eventsTrait.length == 0)
         return
     EVENT_PENDING = true
