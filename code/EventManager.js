@@ -69,6 +69,7 @@ function UpdateEventPool()
             EventPool.push(EVENTS[i])
     }
     console.log(`Events in pool: ${EventPool.length}`)
+    console.log(EventPool)
 }
 
 function LoadEvent(event)
@@ -323,6 +324,8 @@ function GetPoisonTraitBias(traits)
 
 function ValidEvent(event)
 {
+    if(event == null)
+        return false
     if(event["依赖"] != null)
         return false
     return ValidSubEvent(event)
