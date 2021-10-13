@@ -192,17 +192,17 @@ function ProcessCharacterTraits()
 {
     for(t of CharacterTraits)
     {
-        if(CharacterStats.HP < CharacterStats.HPMAX && SPECIAL_TRAITS_REGENERATE[t["名称"]] != null)
+        if(CharacterStats.HP < CharacterStats.HPMAX && t["每层体力"] != null)
         {
-            UpdateHP(SPECIAL_TRAITS_REGENERATE[t["名称"]].regen)
+            UpdateHP(t["每层体力"])
         }
-        if(CharacterStats.FOOD > 0 && SPECIAL_TRAITS_FOODLOSS[t["名称"]] != null)
+        if(t["每层金币"] != null)
         {
-            UpdateFOOD(-SPECIAL_TRAITS_FOODLOSS[t["名称"]].loss)
+            UpdateMONEY(t["每层金币"])
         }
-        if(SPECIAL_TRAITS_MONEYGAIN[t["名称"]] != null)
+        if(CharacterStats.FOOD > 0 && t["每层食物"] != null)
         {
-            UpdateMONEY(SPECIAL_TRAITS_MONEYGAIN[t["名称"]].gain)
+            UpdateFOOD(t["每层食物"])
         }
         if(CharacterIsDebtTaker && CharacterStats.MONEY < 0)
         {

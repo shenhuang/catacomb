@@ -25,6 +25,9 @@ var traitAttributes = [
 	"食物",
 	"战斗力",
 	"运气",
+	"每层体力",
+	"每层金币",
+	"每层食物",
 ]
 
 const SPECIAL_TRAITS_POISON = {
@@ -63,66 +66,12 @@ const SPECIAL_TRAITS_REVIVE = {
 	},
 }
 
-const SPECIAL_TRAITS_REGENERATE = {
-	"活力充沛" : {
-		regen	: 1,
-	},
-	"自愈体质" : {
-		regen	: 2,
-	},
-	"仙丹（精）" : {
-		regen	: 5,
-	},
-	"爸者重装" : {
-		regen	: 5,
-	},
-	"金刚狼" : {
-		regen	: 10,
-	},
-	"路飞" : {
-		regen	: 2,
-	},
-	"饕餮宝珠" : {
-		regen	: 10,
-	},
-}
-
-const SPECIAL_TRAITS_FOODLOSS = {
-	"金刚狼" : {
-		loss	: 1,
-	},
-	"大胃王" : {
-		loss	: 2,
-	},
-	"路飞" : {
-		loss	: 2,
-	},
-	"饕餮宝珠" : {
-		loss	: 2,
-	},
-}
-
-const SPECIAL_TRAITS_MONEYGAIN = {
-	"老头" : {
-		gain	: 1,
-	},
-	"学渣宝石" : {
-		gain	: 5,
-	},
-	"包租婆" : {
-		gain	: 10,
-	},
-	"聚宝盆" : {
-		gain	: 15,
-	},
-}
-
 const SPECIAL_TRAITS_BATTLEDAMAGE = {
 	"金钟罩" : {
 		bias	: 0.5,
 	},
 	"饕餮宝珠" : {
-		loss	: 0.8,
+		bias	: 0.8,
 	},
 	"抖M" : {
 		bias	: 1.25,
@@ -135,7 +84,7 @@ const SPECIAL_TRAITS_BATTLEDAMAGE = {
 const SPECIAL_TRAIT_DEBT = "超前消费"
 
 const SPECIAL_TRAIT_FUHUOJIA = "咸鱼的庇护"
-const SPECIAL_TRAIT_MINGDAO = "名刀 - 思妹"
+const SPECIAL_TRAIT_MINGDAO = "名刀 - 丝袜"
 
 function InitTraits()
 {
