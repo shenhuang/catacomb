@@ -144,7 +144,6 @@ function GetEventResult(event)
 
 function ProcessChoices(event)
 {
-    EVENT_PENDING = true
     let choiceEvents = GetChoiceEvents(event)
     let choiceEventsTrait = GetChoiceEventsTrait(event)
     LoadChoiceEvents(choiceEvents, choiceEventsTrait)
@@ -204,6 +203,13 @@ function GetChoiceEventsTrait(event)
 
 function LoadChoiceEvents(events, eventsTrait)
 {
+    if(events == null && eventsTrait == null)
+        return
+    console.log(events)
+    console.log(eventsTrait)
+    if(events.length == 0 && eventsTrait.length == 0)
+        return
+    EVENT_PENDING = true
     let choiceObjectList = []
     for(i in events)
     {
