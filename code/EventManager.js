@@ -106,7 +106,7 @@ function ProcessEvent(event)
     {
         ProcessDualResult(event)
     }
-    else if(event["选项"] != null)
+    else if(event["选项"] != null || event["天赋选项"] != null)
     {
         ProcessChoices(event)
     }
@@ -155,7 +155,15 @@ function GetChoiceEvents(event)
     let choiceEvents = []
     if(event["选项"] == null)
         return choiceEvents
-    let choiceIDs = event["选项"].split(',').map(Number)
+    let choiceIDs = []
+    if(typeof(event["选项"]) == 'number')
+    {
+        choiceIDs.push(event["选项"])
+    }
+    else
+    {
+        choiceIDs = event["选项"].split(',').map(Number)
+    }
     for(i in choiceIDs)
     {
         let e = EVENTS[choiceIDs[i]]
