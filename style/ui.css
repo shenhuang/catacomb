@@ -65,9 +65,9 @@
 	font-family			:	Arial;
 	font-weight			:	bold;
 	margin				:	20px;
-	-webkit-transition	:	FloatUp 2s linear;
-	transition			:	FloatUp 2s linear;
-	animation			:	FloatUp 2s linear;
+	-webkit-transition	:	FloatUp 4s linear;
+	transition			:	FloatUp 4s linear;
+	animation			:	FloatUp 4s linear;
 }
 .dialog {
 	background			:	#e0edff;
