@@ -190,25 +190,34 @@ function ProcessCharacter()
 
 function ProcessCharacterTraits()
 {
+    let DeltaHP = 0
+    let DeltaMONEY = 0
+    let DeltaFOOD = 0
     for(t of CharacterTraits)
     {
-        if(CharacterStats.HP < CharacterStats.HPMAX && t["每层体力"] != null)
+        if(t["每层体力"] != null)
         {
-            UpdateHP(t["每层体力"])
+            DeltaHP += t["每层体力"]
         }
         if(t["每层金币"] != null)
         {
-            UpdateMONEY(t["每层金币"])
+            DeltaMONEY += t["每层金币"]
         }
         if(CharacterStats.FOOD > 0 && t["每层食物"] != null)
         {
-            UpdateFOOD(t["每层食物"])
+            DeltaFOOD = t["每层食物"]
         }
         if(CharacterIsDebtTaker && CharacterStats.MONEY < 0)
         {
             ProcessCharacterDebt()
         }
     }
+    if(DeltaHP != 0)
+        UpdateHP(DeltaHP)
+    if(DeltaMONEY != 0)
+        UpdateMONEY(DeltaMONEY)
+    if(DeltaFOOD != 0)
+        UpdateFOOD(DeltaFOOD)
 }
 
 function ProcessCharacterDebt()
