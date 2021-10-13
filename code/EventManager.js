@@ -68,6 +68,7 @@ function UpdateEventPool()
         if(ValidEvent(EVENTS[i]))
             EventPool.push(EVENTS[i])
     }
+    console.log(`Events in pool: ${EventPool.length}`)
 }
 
 function LoadEvent(event)
