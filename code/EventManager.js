@@ -37,9 +37,10 @@ function NextEvent()
     if(!CharacterStatus.ALIVE)
         return
     level++
-    if(level >= MAX_LEVEL)
+    if(level > MAX_LEVEL)
     {
-        level = MAX_LEVEL
+        ProcessComplete()
+        return
     }
     if(LEVEL_REACH_EVENTS[level] != null)
     {
