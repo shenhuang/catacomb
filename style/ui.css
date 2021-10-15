@@ -122,6 +122,51 @@
 	transition			:	Lava 20s linear infinite;
 	animation			:	Lava 20s linear infinite;
 }
+.dialogVoid {
+	background			:	#000a36;
+	border-radius		:	10px;
+	border				:	5px;
+	border-style		:	solid;
+	border-color		:	rgb(66, 0, 110);
+	line-height			:	30px;
+	padding-inline		: 	10px;
+	white-space			:	pre-wrap;
+	text-align			:	center;
+	color				:	rgb(140, 0, 255);
+	font-family			:	Arial;
+	font-weight			:	bold;
+	margin				:	10px;
+}
+@keyframes VoidToLight {
+	0% {
+		background		:	#000a36;
+		color			:	rgb(66, 0, 110);
+		border-color	:	rgb(140, 0, 255);
+	}
+	100% {
+		background		:	#ffffff;
+		color			:	rgb(255, 231, 124);
+		border-color	:	rgb(78, 78, 78);
+	}
+}
+.dialogLight {
+	background			:	#ffffff;
+	border-radius		:	10px;
+	border				:	5px;
+	border-style		:	solid;
+	border-color		:	rgb(255, 231, 124);
+	line-height			:	30px;
+	padding-inline		: 	10px;
+	white-space			:	pre-wrap;
+	text-align			:	center;
+	color				:	rgb(78, 78, 78);
+	font-family			:	Arial;
+	font-weight			:	bold;
+	margin				:	10px;
+	-webkit-transition	:	VoidToLight 1s ease-in;
+	transition			:	VoidToLight 1s ease-in;
+	animation			:	VoidToLight 1s ease-in;
+}
 .dialogTitle {
 	text-align			:	center;
 	color				:	black;
@@ -138,6 +183,20 @@
 	transition			:	Lava 20s linear infinite;
 	animation			:	Lava 20s linear infinite;
 }
+.dialogTitleVoid {
+	text-align			:	center;
+	color				:	rgb(140, 0, 255);
+	font-weight			:	bold;
+	font-size			:	16px;
+	margin				:	20px;
+}
+.dialogTitleLight {
+	text-align			:	center;
+	color				:	rgb(78, 78, 78);
+	font-weight			:	bold;
+	font-size			:	16px;
+	margin				:	20px;
+}
 .dialogContent {
 	text-align			:	left;
 	color				:	black;
@@ -153,6 +212,20 @@
 	-webkit-transition	:	Lava 20s linear infinite;
 	transition			:	Lava 20s linear infinite;
 	animation			:	Lava 20s linear infinite;
+}
+.dialogContentLight {
+	text-align			:	left;
+	color				:	rgb(78, 78, 78);
+	line-height			:	15px;
+	font-size			:	14px;
+	margin				:	10px;
+}
+.dialogContentVoid {
+	text-align			:	left;
+	color				:	rgb(140, 0, 255);
+	line-height			:	15px;
+	font-size			:	14px;
+	margin				:	10px;
 }
 .choice {
 	background			:	#e0edff;
@@ -185,6 +258,36 @@
 	transition			:	Lava 20s linear infinite;
 	animation			:	Lava 20s linear infinite;
 }
+.choiceVoid {
+	background			:	#000a36;
+	display				:	block;
+	border-radius		:	10px;
+	border				:	3px;
+	border-style		:	solid;
+	border-color		:	rgb(37, 46, 114);
+	line-height			:	20px;
+	padding-inline		: 	10px;
+	text-align			:	left;
+	color				:	rgb(140, 0, 255);
+	font-family			:	Arial;
+	font-size			:	14px;
+	margin				:	5px;
+}
+.choiceLight {
+	background			:	#ffffff;
+	display				:	block;
+	border-radius		:	10px;
+	border				:	3px;
+	border-style		:	solid;
+	border-color		:	rgb(255, 231, 124);
+	line-height			:	20px;
+	padding-inline		: 	10px;
+	text-align			:	left;
+	color				:	rgb(78, 78, 78);
+	font-family			:	Arial;
+	font-size			:	14px;
+	margin				:	5px;
+}
 .choiceSelected {
 	background			:	#e0edff;
 	display				:	block;
@@ -214,6 +317,32 @@
 	transition			:	Lava 20s linear infinite;
 	animation			:	Lava 20s linear infinite;
 }
+.choiceSelectedVoid {
+	background			:	#00115f;
+	display				:	block;
+	border-radius		:	10px;
+	border				:	3px;
+	border-style		:	solid;
+	line-height			:	20px;
+	padding-inline		: 	10px;
+	text-align			:	left;
+	font-family			:	Arial;
+	font-size			:	14px;
+	margin				:	5px;
+}
+.choiceSelectedLight {
+	background			:	rgb(255, 241, 180);
+	display				:	block;
+	border-radius		:	10px;
+	border				:	3px;
+	border-style		:	solid;
+	line-height			:	20px;
+	padding-inline		: 	10px;
+	text-align			:	left;
+	font-family			:	Arial;
+	font-size			:	14px;
+	margin				:	5px;
+}
 .choiceTraitEText {
 	display				:	inline-block;
 	text-align			:	left;
@@ -230,6 +359,13 @@
 	transition			:	Lava 20s linear infinite;
 	animation			:	Lava 20s linear infinite;
 }
+.choiceTraitETextVoid {
+	display				:	inline-block;
+	text-align			:	left;
+	color				:	rgb(140, 0, 255);
+	font-family			:	Arial;
+	font-size			:	14px;
+}
 .choiceTraitTText {
 	display				:	inline-block;
 	text-align			:	left;
@@ -239,6 +375,14 @@
 	margin-left			:	5px;
 }
 .choiceTraitTTextLava {
+	display				:	inline-block;
+	text-align			:	left;
+	color				:	#2969b3;
+	font-family			:	Arial;
+	font-size			:	14px;
+	margin-left			:	5px;
+}
+.choiceTraitTTextVoid {
 	display				:	inline-block;
 	text-align			:	left;
 	color				:	#2969b3;

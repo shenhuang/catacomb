@@ -48,24 +48,6 @@ const SPECIAL_TRAITS_POISON = {
 	},
 }
 
-const SPECIAL_TRAITS_REVIVE = {
-	"月光饭盒" : {
-		revive	: 1,
-	},
-	"绿色蘑菇" : {
-		revive	: 1,
-	},
-	"游戏币" : {
-		revive	: 1,
-	},
-	"九命猫" : {
-		revive	: 8,
-	},
-	"饕餮宝珠" : {
-		loss	: 1,
-	},
-}
-
 const SPECIAL_TRAITS_BATTLEDAMAGE = {
 	"金钟罩" : {
 		bias	: 0.5,
@@ -307,9 +289,9 @@ function AcquireNewTrait(trait)
 
 function ApplyTraitSpecial(trait)
 {
-    if(SPECIAL_TRAITS_REVIVE[trait["名称"]] != null)
+    if(trait["额外生命"] != null)
     {
-        CharacterLife += SPECIAL_TRAITS_REVIVE[trait["名称"]].revive
+        CharacterLife += trait["额外生命"]
     }
 	if(SPECIAL_TRAIT_DEBT == trait["名称"])
 	{

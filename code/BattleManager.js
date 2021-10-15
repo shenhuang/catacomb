@@ -7,7 +7,7 @@ function ProcessBattle(enemyPower)
             let HPLoss = GetBattleHPLoss(enemyPowerValue)
             if(HPLoss <= 0)
             {
-                CurrentEventDialog.appendChild(NewEventDialogContent(`敌人根本不是你的对手，你毫发无损！`))
+                CurrentEventDialog.appendChild(NewEventDialogContent(`敌人根本不是对手，你毫发无损！`))
             }
             else
             {

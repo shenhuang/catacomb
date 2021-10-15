@@ -32,6 +32,7 @@ function ProcessDeath()
 
 function ProcessComplete()
 {
+    CharacterStatus.ALIVE = false
     ClearPage()
     LoadText(`* * * 恭喜通关 * * *`)
     LoadText(`你的角色属性：\n`)

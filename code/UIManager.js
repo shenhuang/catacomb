@@ -10,6 +10,8 @@ const DEBOUNCE_TIME = 100
 
 var IS_TOUCH_DEVICE = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
 
+var UI_LIGHT = false
+
 function ClearPage()
 {
 	document.body.innerHTML = ""
@@ -199,6 +201,32 @@ function NewEventDialog(title, content, style = 'dialog' + GetStyleSuffix())
 	return eventDialogObject
 }
 
+function LightEventDialog(eventDialogObject)
+{
+	UI_LIGHT = true
+	eventDialogObject.setAttribute('class', 'dialogLight')
+	for(i = 0; i < eventDialogObject.children.length; i++)
+	{
+		let child = eventDialogObject.children[i]
+		if(child.className.includes('dialogTitle'))
+		{
+			child.setAttribute('class', 'dialogTitleLight')
+		}
+		if(child.className.includes('dialogContent'))
+		{
+			child.setAttribute('class', 'dialogContentLight')
+		}
+		if(child.className.includes('choice'))
+		{
+			child.setAttribute('class', 'choiceLight')
+		}
+		if(child.className.includes('choiceSelected'))
+		{
+			child.setAttribute('class', 'choiceSelectedLight')
+		}
+	}
+}
+
 function NewEventDialogTitle(text, style = 'dialogTitle' + GetStyleSuffix())
 {
 	let textObject = document.createElement("DIV")
@@ -253,6 +281,10 @@ function DisableEventDialogChoice(choiceObject, showSelected, style = 'choiceSel
 
 function GetStyleSuffix()
 {
+	if(UI_LIGHT)
+		return 'Light'
+	if(level >= 200)
+		return 'Void'
 	if(level >= 100)
 		return 'Lava'
 	return ''
