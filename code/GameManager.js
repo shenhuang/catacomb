@@ -9,6 +9,7 @@ function LoadGame()
 		ClearPage()
         CharacterInit()
         EventInit()
+        EnableCheatBoard()
     })
 }
 
