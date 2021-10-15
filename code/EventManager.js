@@ -103,13 +103,13 @@ function ProcessEvent(event)
     {
         ProcessDependency(event)
     }
+    if(event["描述"] == "世界突然感觉明亮了许多！")
+    {
+        EnsureDeath()
+    }
     if(event["描述"] == "你战胜了奶牛！")
     {
         ProcessCowKill()
-    }
-    if(event["描述"] == "世界突然感觉明亮了许多！")
-    {
-        LightEventDialog(CurrentEventDialog)
     }
     if(event["敌人战力"] != null)
     {
@@ -282,6 +282,11 @@ function GetStatChange(changeData)
         return -1 * (CharacterStats.HP + parseInt(changeData.slice(4, changeData.length)))
     if(changeData.startsWith('IMHP'))
         return CharacterStats.HPMAX + parseInt(changeData.slice(4, changeData.length))
+    if(changeData == 'DEATH')
+    {
+        EnsureDeath()
+        return -1 * CharacterStats.HP
+    }
     let changeRange = changeData.split(',').map(Number)
     let change = Math.round(changeRange[0] + Math.random() * (changeRange[1] - changeRange[0]))
     return change

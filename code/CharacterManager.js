@@ -301,6 +301,13 @@ function CharacterDead()
     }
 }
 
+function EnsureDeath()
+{
+    CharacterLife = 0
+    CharacterHasFuhuojia = false
+    CharacterHasMingdao = false
+}
+
 function ProcessCharacterRevive()
 {
     if(CharacterHasFuhuojia)
