@@ -121,7 +121,20 @@ function UpdateHP(delta, flashScreen = true)
     {
         CharacterStats.HP = CharacterStats.HPMAX
     }
+    UpdateHPTextColor(CharacterBoard.CharacterHPText)
     CharacterBoard.CharacterHPText.textContent = GetCharacterHPString()
+}
+
+function UpdateHPTextColor(text)
+{
+    if(CharacterStats.HP < CharacterStats.HPMAX / 5)
+    {
+        text.style.color = 'red'
+    }
+    else
+    {
+        text.style.color = 'white'
+    }
 }
 
 function UpdateMONEY(delta)
@@ -141,7 +154,20 @@ function UpdateFOOD(delta)
     {
         CharacterStats.FOOD = 0
     }
-    CharacterBoard.CharacterFOODText.textContent = GetCharacterFOODString()   
+    UpdateFoodTextColor(CharacterBoard.CharacterFOODText)
+    CharacterBoard.CharacterFOODText.textContent = GetCharacterFOODString()
+}
+
+function UpdateFoodTextColor(text)
+{
+    if(CharacterStats.FOOD <= 0)
+    {
+        text.style.color = 'red'
+    }
+    else
+    {
+        text.style.color = 'white'
+    }
 }
 
 function UpdatePOWER(delta)
