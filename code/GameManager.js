@@ -1,8 +1,17 @@
 function LoadGame()
 {
-    LoadText("这里是卡塔窟")
-    LoadText("开启你的奇妙历险")
-    LoadText("请选择最多三个初始天赋")
+    for(i in GAMESTART)
+    {
+        let c = GAMESTART[i]
+        if(c["类别"] == '标题')
+        {
+            ChangeTitle(c["内容"])
+        }
+        if(c["类别"] == '欢迎语')
+        {
+            LoadText(c["内容"])
+        }
+    }
     InitTraits()
     LoadTraits()
     LoadButton("开始冒险", () => {

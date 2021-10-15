@@ -66,6 +66,11 @@ function UnregisterObjectTouch(obj, f)
 	}
 }
 
+function ChangeTitle(newTitle)
+{
+	document.title = newTitle
+}
+
 function LoadText(text, align = "center")
 {
 	let textObject = NewText(text, align)
@@ -283,6 +288,12 @@ function GetStyleSuffix()
 {
 	if(UI_LIGHT)
 		return 'Light'
+	for(i in LEVELCONFIG)
+	{
+		c = LEVELCONFIG[i]
+		if(level >= c["最小层数"])
+			return c["风格"]
+	}
 	if(level >= 200)
 		return 'Void'
 	if(level >= 100)
