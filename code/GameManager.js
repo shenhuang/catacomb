@@ -1,6 +1,6 @@
 function LoadGame()
 {
-    for(i in GAMESTART)
+    for(let i in GAMESTART)
     {
         let c = GAMESTART[i]
         if(c["类别"] == '标题')

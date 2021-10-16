@@ -276,7 +276,7 @@ function GetPoisonTotalDamage()
 {
     let totalDamage = 0
     let leftOver = []
-    for(i in CharacterStatus.POISON)
+    for(let i in CharacterStatus.POISON)
     {
         let poison = CharacterStatus.POISON[i]
         if(poison.duration > 0)

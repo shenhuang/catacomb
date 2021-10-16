@@ -210,7 +210,7 @@ function LightEventDialog(eventDialogObject)
 {
 	UI_LIGHT = true
 	eventDialogObject.setAttribute('class', 'dialogLight')
-	for(i = 0; i < eventDialogObject.children.length; i++)
+	for(let i = 0; i < eventDialogObject.children.length; i++)
 	{
 		let child = eventDialogObject.children[i]
 		if(child.className.includes('dialogTitle'))
@@ -288,7 +288,7 @@ function GetStyleSuffix()
 {
 	if(UI_LIGHT)
 		return 'Light'
-	for(i in LEVELCONFIG)
+	for(let i in LEVELCONFIG)
 	{
 		c = LEVELCONFIG[i]
 		if(level >= c["最小层数"])

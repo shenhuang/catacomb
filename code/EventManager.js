@@ -65,12 +65,14 @@ function ProcessLevelReach(l)
 function UpdateEventPool()
 {
     EventPool = []
-    for(i in EVENTS)
+    for(let i in EVENTS)
     {
         if(ValidEvent(EVENTS[i]))
+        {
             EventPool.push(EVENTS[i])
+        }
     }
-    LogEventPoolInfo(EventPool)
+    //LogEventPoolInfo(EventPool)
 }
 
 function LogEventPoolInfo(pool)
@@ -176,7 +178,7 @@ function GetChoiceEvents(event)
     {
         choiceIDs = event["选项"].split(',').map(Number)
     }
-    for(i in choiceIDs)
+    for(let i in choiceIDs)
     {
         let e = EVENTS[choiceIDs[i]]
         if(ValidSubEvent(e))
@@ -198,7 +200,7 @@ function GetChoiceEventsTrait(event)
         }
         return c
     })
-    for(i in choiceConfigs)
+    for(let i in choiceConfigs)
     {
         let choiceConfig = choiceConfigs[i]
         let e = EVENTS[choiceConfig.eid]
@@ -222,12 +224,12 @@ function LoadChoiceEvents(events, eventsTrait)
         return
     EVENT_PENDING = true
     let choiceObjectList = []
-    for(i in events)
+    for(let i in events)
     {
         let event = events[i]
         let choiceObject = NewEventDialogChoice(event["名称"], () => {
             setTimeout(() => {
-                for(j in choiceObjectList)
+                for(let j in choiceObjectList)
                 {
                     DisableEventDialogChoice(choiceObjectList[j], choiceObjectList[j] == choiceObject)    
                 }
@@ -237,13 +239,13 @@ function LoadChoiceEvents(events, eventsTrait)
         choiceObjectList.push(choiceObject)
         CurrentEventDialog.appendChild(choiceObject)
     }
-    for(i in eventsTrait)
+    for(let i in eventsTrait)
     {
         let event = eventsTrait[i].event
         let trait = eventsTrait[i].trait
         let choiceObject = NewEventTraitDialogChoice(event["名称"], trait["名称"], () => {
             setTimeout(() => {
-                for(j in choiceObjectList)
+                for(let j in choiceObjectList)
                 {
                     DisableEventDialogChoice(choiceObjectList[j], choiceObjectList[j] == choiceObject)    
                 }
@@ -259,7 +261,7 @@ function LoadChoiceEvents(events, eventsTrait)
 function ProcessStatsChange(event)
 {
     let StatsChangeString = ""
-    for(n in CharacterStatsUpdateTable)
+    for(let n in CharacterStatsUpdateTable)
     {
         if(event[n] != null)
         {
@@ -330,7 +332,7 @@ function GetPoisonTraitBias(traits)
 {
     let c = 1
     let w = 1
-    for(i in traits)
+    for(let i in traits)
     {
         let trait = traits[i]
         if(SPECIAL_TRAITS_POISON[trait["名称"]] != null)
@@ -346,6 +348,8 @@ function ValidEvent(event)
 {
     if(event == null)
         return false
+    if(event["弃用"] != null)
+        return false
     if(event["依赖"] != null)
         return false
     return ValidSubEvent(event)
@@ -353,8 +357,6 @@ function ValidEvent(event)
 
 function ValidSubEvent(event)
 {
-    if(event["弃用"] != null)
-        return false
     if(event["最小层数"] > level)
         return false
     if(event["最大层数"] < level)
@@ -389,7 +391,7 @@ function ValidSubEvent(event)
         if(typeof(traitData) != 'number')
         {
             traitData = traitData.split(',').map(Number)
-            for(i in traitData)
+            for(let i in traitData)
             {
                 if(CharacterTraits.includes(TRAITS[traitData[i]]))
                     return false
@@ -408,11 +410,11 @@ function ValidSubEvent(event)
         {
             let traitOR = traitData.split(',')
             let includeANY = false
-            for(i in traitOR)
+            for(let i in traitOR)
             {
                 let traitAND = traitOR[i].split('&').map(Number)
                 let includeALL = true
-                for(j in traitAND)
+                for(let j in traitAND)
                 {
                     let traitItem = traitAND[j]
                     if(!CharacterTraits.includes(TRAITS[traitItem]))

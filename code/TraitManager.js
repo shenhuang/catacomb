@@ -82,7 +82,7 @@ function LoadTraits()
 function LoadTraitList(traitList)
 {
 	let traitObjects = []
-	for(i in traitList)
+	for(let i in traitList)
 	{
 		traitObjects.push(LoadTrait(traitList[i]))
 	}
@@ -92,7 +92,7 @@ function LoadTraitList(traitList)
 function LoadAllTraits()
 {
 	let traitObjects = []
-	for(i in TRAITS)
+	for(let i in TRAITS)
 	{
 		traitObjects.push(LoadTrait(TRAITS[i]))
 	}
@@ -105,11 +105,11 @@ function GetShowTraits()
 	let thresh = GetTraitRairtyThresh(traitRairtyOdds)
 	let showTraitsByRairty = GetShowTraitsByRairty()
 	let showTraits = []
-	for(i = 0; i < MAX_GEN_TRAIT; i++)
+	for(let i = 0; i < MAX_GEN_TRAIT; i++)
 	{
 		let randn = Math.random()
 		let rairty = 0
-		for(r in thresh)
+		for(let r in thresh)
 		{
 			if(randn > thresh[r])
 			{
@@ -128,12 +128,12 @@ function GetShowTraits()
 function GetTraitRairtyOdds(weights)
 {
 	let d = 0
-	for(i in weights)
+	for(let i in weights)
 	{
 		d += weights[i]
 	}
 	let odds = []
-	for(i in weights)
+	for(let i in weights)
 	{
 		odds[i] = weights[i] / d
 	}
@@ -144,7 +144,7 @@ function GetTraitRairtyThresh(odds)
 {
 	thresh = []
 	s = 0
-	for(i in odds)
+	for(let i in odds)
 	{
 		thresh[i] = s
 		s += odds[i]
@@ -155,7 +155,7 @@ function GetTraitRairtyThresh(odds)
 function GetShowTraitsByRairty()
 {
 	let stbr = {}
-	for(i in TRAITS)
+	for(let i in TRAITS)
 	{
 		let trait = TRAITS[i]
 		if(trait["可预选"] == 1 && trait["稀有度"] != null)
@@ -209,7 +209,7 @@ function GetTraitDesc(trait)
 	}
 	else
 	{
-		for(i of traitAttributes)
+		for(let i of traitAttributes)
 		{
 			if(trait[i] != null)
 			{
