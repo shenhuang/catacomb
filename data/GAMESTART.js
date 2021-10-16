@@ -1,4 +1,4 @@
-//Autogen by dataconv.py on 2021-10-16 16:01:16.383374
+//Autogen by dataconv.py on 2021-10-16 17:28:19.366767
 var GAMESTART = {
 	[2] : {
 		"类别" : "标题",
