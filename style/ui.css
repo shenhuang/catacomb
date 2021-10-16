@@ -35,19 +35,19 @@
 }
 @keyframes FloatUp {
 	0% {
-		transform		:	translate(-60%, 0%);
+		transform		:	translate(-50%, 0%);
 		opacity			:	0.8;
 	}
 	50% {
-		transform		:	translate(-60%, 0%);
+		transform		:	translate(-50%, 0%);
 		opacity			:	0.8;
 	}
 	75% {
-		transform		:	translate(-60%, -40%);
+		transform		:	translate(-50%, -40%);
 		opacity			:	0.0;
 	}
 	100% {
-		transform		:	translate(-60%, 0%);
+		transform		:	translate(-50%, 0%);
 		opacity			:	0.0;
 	}
 }
@@ -165,7 +165,7 @@
 	margin				:	10px;
 	-webkit-transition	:	VoidToLight 1s ease-in;
 	transition			:	VoidToLight 1s ease-in;
-	animation			:	VoidToLight 1s ease-in;
+	animation			:	VoidToLight s ease-in;
 }
 .dialogTitle {
 	text-align			:	center;
