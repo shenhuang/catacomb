@@ -315,7 +315,10 @@ function ProcessPoisonStatus(event)
     {
         let bias = GetPoisonTraitBias(CharacterTraits)
         if(Math.random() > bias.chance)
+        {
+            CurrentEventDialog.appendChild(NewEventDialogContent(`你的特殊体质让你免疫了毒素！`))
             return
+        }   
         let poison = {
             duration    : Math.floor(event["中毒时间"] * bias.weaken),
             strength    : event["中毒效果"],
