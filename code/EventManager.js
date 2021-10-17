@@ -40,7 +40,7 @@ function NextEvent()
     level++
     if(level > MAX_LEVEL)
     {
-        ProcessComplete()
+        ProcessWin()
         return
     }
     if(LEVEL_REACH_EVENTS[level] != null)
@@ -143,6 +143,10 @@ function ProcessDualResult(event)
     RegisterScreenTouch(() => {
         setTimeout(() => {
             ProcessEvent(result)
+            if(event["好结果"] == 'WIN')
+            {
+                ProcessWin()
+            }
         }, 1)
     }, true)
     

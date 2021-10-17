@@ -40,7 +40,7 @@ function ProcessDeath()
     })
 }
 
-function ProcessComplete()
+function ProcessWin()
 {
     CharacterStatus.ALIVE = false
     ClearPage()
