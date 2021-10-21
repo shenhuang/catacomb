@@ -105,14 +105,7 @@ function ProcessEvent(event)
     {
         ProcessDependency(event)
     }
-    if(event["描述"] == "世界突然感觉明亮了许多！")
-    {
-        EnsureDeath()
-    }
-    if(event["描述"] == "你战胜了奶牛！")
-    {
-        ProcessCowKill()
-    }
+    ProcessSpecial(event)
     if(event["敌人战力"] != null)
     {
         ProcessBattle(event["敌人战力"])
@@ -128,6 +121,28 @@ function ProcessEvent(event)
     ProcessStatsChange(event)
     ProcessStatusChange(event)
     ProcessTraitsChange(event)
+    ProcessLevelChange(event)
+}
+
+function ProcessSpecial(event)
+{
+    if(event["描述"] == "世界突然感觉明亮了许多！")
+    {
+        LightEventDialog()
+    }
+    if(event["描述"] == "你战胜了奶牛！")
+    {
+        ProcessCowKill()
+    }
+}
+
+function ProcessLevelChange(event)
+{
+    console.log(event)
+    if(event["层数"] != null)
+    {
+        level += event["层数"]
+    }
 }
 
 function ProcessDependency(event)
