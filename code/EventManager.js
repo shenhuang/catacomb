@@ -1,4 +1,4 @@
-const REWARD_COWS_KILLED = 25
+const REWARD_COWS_KILLED = 20
 
 const COW_REWARD_EVENT = 385
 
@@ -138,7 +138,6 @@ function ProcessSpecial(event)
 
 function ProcessLevelChange(event)
 {
-    console.log(event)
     if(event["层数"] != null)
     {
         level += event["层数"]
