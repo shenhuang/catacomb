@@ -72,13 +72,19 @@ function UpdateEventPool()
             EventPool.push(EVENTS[i])
         }
     }
-    //LogEventPoolInfo(EventPool)
+    LogEventPoolInfo(EventPool)
 }
 
 function LogEventPoolInfo(pool)
 {
     console.log(`# of events in pool: ${pool.length}`)
     console.log(pool)
+}
+
+function LogEvent(event)
+{
+    console.log(`at level ${level} current event is:`)
+    console.log(event)
 }
 
 function LoadEvent(event)
@@ -93,6 +99,7 @@ function GetNextEvent()
 
 function ProcessEvent(event)
 {
+    LogEvent(event)
     if(!CharacterStatus.ALIVE)
         return
     EVENT_PENDING = false
@@ -199,8 +206,7 @@ function GetChoiceEvents(event)
     for(let i in choiceIDs)
     {
         let e = EVENTS[choiceIDs[i]]
-        if(ValidSubEvent(e))
-            choiceEvents.push(e)
+        choiceEvents.push(e)
     }
     return choiceEvents
 }
@@ -245,15 +251,20 @@ function LoadChoiceEvents(events, eventsTrait)
     for(let i in events)
     {
         let event = events[i]
-        let choiceObject = NewEventDialogChoice(event["名称"], () => {
-            setTimeout(() => {
-                for(let j in choiceObjectList)
-                {
-                    DisableEventDialogChoice(choiceObjectList[j], choiceObjectList[j] == choiceObject)    
-                }
-                ProcessEvent(event)
-            }, 1)
-        })
+        let action = null
+        if(ValidSubEvent(event))
+        {
+            action = () => {
+                setTimeout(() => {
+                    for(let j in choiceObjectList)
+                    {
+                        DisableEventDialogChoice(choiceObjectList[j], choiceObjectList[j] == choiceObject)    
+                    }
+                    ProcessEvent(event)
+                }, 1)
+            }
+        }
+        let choiceObject = NewEventDialogChoice(event["名称"], action)
         choiceObjectList.push(choiceObject)
         CurrentEventDialog.appendChild(choiceObject)
     }
@@ -369,8 +380,6 @@ function ValidEvent(event)
 {
     if(event == null)
         return false
-    if(event["弃用"] != null)
-        return false
     if(event["依赖"] != null)
         return false
     return ValidSubEvent(event)
@@ -378,6 +387,8 @@ function ValidEvent(event)
 
 function ValidSubEvent(event)
 {
+    if(event["弃用"] != null)
+        return false
     if(event["最小层数"] > level)
         return false
     if(event["最大层数"] < level)

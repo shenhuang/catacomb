@@ -109,6 +109,12 @@ function UpdateHP(delta, flashScreen = true)
     CharacterStats.HP = CharacterStats.HP + delta
     if(flashScreen && delta < 0)
         FlashScreen('red')
+    if(CharacterStats.HP > CharacterStats.HPMAX)
+    {
+        CharacterStats.HP = CharacterStats.HPMAX
+    }
+    UpdateHPTextColor(CharacterBoard.CharacterHPText)
+    CharacterBoard.CharacterHPText.textContent = GetCharacterHPString()
     if(CharacterStats.HP < 1)
     {
         let sucess = ProcessLethalNegation(delta)
@@ -117,12 +123,6 @@ function UpdateHP(delta, flashScreen = true)
             CharacterDead()
         }
     }
-    if(CharacterStats.HP > CharacterStats.HPMAX)
-    {
-        CharacterStats.HP = CharacterStats.HPMAX
-    }
-    UpdateHPTextColor(CharacterBoard.CharacterHPText)
-    CharacterBoard.CharacterHPText.textContent = GetCharacterHPString()
 }
 
 function UpdateHPTextColor(text)

@@ -253,8 +253,15 @@ function NewEventDialogChoice(text, action, style = 'choice' + GetStyleSuffix())
 	let choiceObject = document.createElement("DIV")
 	choiceObject.textContent = text
 	choiceObject.setAttribute('class', style)
-	choiceObject.action = action
-	RegisterObjectTouch(choiceObject, choiceObject.action)
+	if(action == null)
+	{
+		choiceObject.style.color = 'gray'
+	}
+	else
+	{
+		choiceObject.action = action
+		RegisterObjectTouch(choiceObject, choiceObject.action)
+	}
 	return choiceObject
 }
 
