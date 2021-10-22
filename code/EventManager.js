@@ -4,6 +4,8 @@ const COW_REWARD_EVENT = 385
 
 const MAX_LEVEL = 255
 
+const EVENT_MARK_COUNT = 3
+
 const LEVEL_REACH_EVENTS = {
     [0]    : 361,
     [50]   : 357,
@@ -13,7 +15,7 @@ const LEVEL_REACH_EVENTS = {
 }
 
 var level
-var EventPool
+var EventIDPool
 var CurrentEventDialog
 var EVENT_PENDING
 
@@ -23,7 +25,7 @@ function EventInit()
 {
     UI_LIGHT = false
     level = -1  
-    EventPool = []
+    EventIDPool = []
     CurrentEventDialog = null
     EVENT_PENDING = false
     CowsKilled = 0
@@ -48,7 +50,7 @@ function NextEvent()
         ProcessLevelReach(level)
         return
     }
-    UpdateEventPool()
+    UpdateEventIDPool()
     let e = GetNextEvent()
     CurrentEventDialog = LoadEvent(e)
     ProcessEvent(e)
@@ -62,28 +64,28 @@ function ProcessLevelReach(l)
     ProcessEvent(e)
 }
 
-function UpdateEventPool()
+function UpdateEventIDPool()
 {
-    EventPool = []
+    EventIDPool = []
     for(let i in EVENTS)
     {
         if(ValidEvent(EVENTS[i]))
         {
-            EventPool.push(EVENTS[i])
+            EventIDPool.push(i)
         }
     }
-    LogEventPoolInfo(EventPool)
+    LogEventIDPoolInfo(EventIDPool)
 }
 
-function LogEventPoolInfo(pool)
+function LogEventIDPoolInfo(pool)
 {
-    console.log(`# of events in pool: ${pool.length}`)
+    console.log(`currently ${pool.length} events in pool:`)
     console.log(pool)
 }
 
 function LogEvent(event)
 {
-    console.log(`at level ${level} current event is:`)
+    console.log(`event for level ${level} is:`)
     console.log(event)
 }
 
@@ -94,7 +96,28 @@ function LoadEvent(event)
 
 function GetNextEvent()
 {
-    return EventPool[Math.floor(Math.random() * EventPool.length)]
+    return GetNextRandomEventMarkRepeat(EVENT_MARK_COUNT)
+}
+
+function GetNextRandomEvent()
+{
+    let id = EventIDPool[Math.floor(Math.random() * EventIDPool.length)]
+    let nextEvent = EVENTS[id]
+    return nextEvent
+}
+
+function GetNextRandomEventMarkRepeat(markCount)
+{
+    let id = EventIDPool[Math.floor(Math.random() * EventIDPool.length)]
+    let nextEvent = EVENTS[id]
+    while(nextEvent.mark != null && nextEvent.mark > 0)
+    {
+        nextEvent.mark--
+        id = EventIDPool[Math.floor(Math.random() * EventIDPool.length)]
+        nextEvent = EVENTS[id]       
+    }
+    nextEvent.mark = markCount
+    return nextEvent
 }
 
 function ProcessEvent(event)
