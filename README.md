@@ -18,6 +18,8 @@
 
 ## 帮助文档
 
+[简单教程](https://github.com/shenhuang/catacomb/blob/main/%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.md)
+
 我在将项目初步完成后会慢慢补齐相关的帮助和教学内容。
 
 ## 技术理念
