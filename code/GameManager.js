@@ -6,11 +6,17 @@ function LoadGame()
     InitTraits()
     LoadTraits()
     LoadButton(GameConfig["开始按钮"], () => {
-		ClearPage()
-        CharacterInit()
-        EventInit()
-        EnableCheatBoard()
+        StartGame()
     })
+}
+
+function StartGame()
+{
+    ClearPage()
+    CharacterInit()
+    EventInit()
+    LoadTraitPanel()
+    EnableCheatBoard()
 }
 
 function ProcessConfigFiles()

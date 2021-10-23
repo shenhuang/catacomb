@@ -2,13 +2,14 @@ const MAX_SEL_TRAIT = 3
 const MAX_GEN_TRAIT = 10
 
 var SelectedTraits
+var CharacterTraitPanel
 
 var traitRairtyWeights = {
-	[1] : 100,
-	[2] : 60,
-	[3] : 30,
+	[1] : 50,
+	[2] : 40,
+	[3] : 20,
 	[4] : 10,
-	[5] : 1,
+	[5] : 5,
 }
 
 var traitRairtyColors = {
@@ -284,6 +285,7 @@ function AcquireNewTrait(trait)
         CurrentEventDialog.appendChild(NewTraitBar(trait))
         ApplyNewTrait(trait)
         CharacterTraits.push(trait)
+		UpdateTraitPanel()
     }
 }
 

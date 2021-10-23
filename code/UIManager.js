@@ -8,6 +8,8 @@ const FLASH_SCREEN_DURATION = 500
 
 const DEBOUNCE_TIME = 100
 
+const TRAITS_PER_PAGE = 10
+
 var IS_TOUCH_DEVICE = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
 
 var UI_LIGHT = false
@@ -80,7 +82,7 @@ function LoadText(text, align = "center")
 
 function NewText(text, align = "center")
 {
-	let textObject = document.createElement("DIV")
+	let textObject = document.createElement('DIV')
 	textObject.textContent = text
 	textObject.style.textAlign = align
 	return textObject
@@ -95,7 +97,7 @@ function LoadBoard()
 
 function NewBoard()
 {
-	let boardObject = document.createElement("DIV")
+	let boardObject = document.createElement('DIV')
 	boardObject.setAttribute('class', 'board')
 	return boardObject
 }
@@ -109,7 +111,7 @@ function LoadBar(text, color)
 
 function NewBar(text, color)
 {
-	let barObject = document.createElement("DIV")
+	let barObject = document.createElement('DIV')
 	barObject.textContent = text
 	barObject.setAttribute('class', 'barDeselect')
 	barObject.style.borderColor = color
@@ -141,7 +143,7 @@ function LoadButton(text, action)
 
 function NewButton(text, action)
 {
-	let buttonObject = document.createElement("DIV")
+	let buttonObject = document.createElement('DIV')
 	buttonObject.textContent = text
 	buttonObject.setAttribute('class', 'button')
 	RegisterObjectTouch(buttonObject, action)
@@ -181,7 +183,7 @@ function LoadDialog(text)
 
 function NewDialog(text, style = 'dialog' + GetStyleSuffix())
 {
-	let dialogObject = document.createElement("DIV")
+	let dialogObject = document.createElement('DIV')
 	dialogObject.textContent = text
 	dialogObject.setAttribute('class', style)
 	return dialogObject
@@ -197,7 +199,7 @@ function LoadEventDialog(title, content)
 
 function NewEventDialog(title, content, style = 'dialog' + GetStyleSuffix())
 {
-	let eventDialogObject = document.createElement("DIV")
+	let eventDialogObject = document.createElement('DIV')
 	eventDialogObject.setAttribute('class', style)
 	let textTitle = NewEventDialogTitle(title)
 	let textContent = NewEventDialogContent(content)
@@ -234,7 +236,7 @@ function LightEventDialog(eventDialogObject)
 
 function NewEventDialogTitle(text, style = 'dialogTitle' + GetStyleSuffix())
 {
-	let textObject = document.createElement("DIV")
+	let textObject = document.createElement('DIV')
 	textObject.textContent = text
 	textObject.setAttribute('class', style)
 	return textObject
@@ -242,7 +244,7 @@ function NewEventDialogTitle(text, style = 'dialogTitle' + GetStyleSuffix())
 
 function NewEventDialogContent(text, style = 'dialogContent' + GetStyleSuffix())
 {
-	let textObject = document.createElement("DIV")
+	let textObject = document.createElement('DIV')
 	textObject.textContent = text
 	textObject.setAttribute('class', style)
 	return textObject
@@ -250,7 +252,7 @@ function NewEventDialogContent(text, style = 'dialogContent' + GetStyleSuffix())
 
 function NewEventDialogChoice(text, action, style = 'choice' + GetStyleSuffix())
 {
-	let choiceObject = document.createElement("DIV")
+	let choiceObject = document.createElement('DIV')
 	choiceObject.textContent = text
 	choiceObject.setAttribute('class', style)
 	if(action == null)
@@ -265,16 +267,16 @@ function NewEventDialogChoice(text, action, style = 'choice' + GetStyleSuffix())
 	return choiceObject
 }
 
-function NewEventTraitDialogChoice(eText, tText, action, style = 'choice' + GetStyleSuffix(), styleE = 'choiceTraitEText' + GetStyleSuffix())
+function NewEventTraitDialogChoice(eText, tText, action, style = 'choice' + GetStyleSuffix(), styleE = 'choiceTraitEText' + GetStyleSuffix(), styleT = 'choiceTraitTText' + GetStyleSuffix())
 {
-	let choiceObject = document.createElement("DIV")
-	let eventText = document.createElement("DIV")
+	let choiceObject = document.createElement('DIV')
+	let eventText = document.createElement('DIV')
 	eventText.textContent = eText
 	eventText.setAttribute('class', styleE)
 	choiceObject.appendChild(eventText)
-	let traitText = document.createElement("DIV")
+	let traitText = document.createElement('DIV')
 	traitText.textContent = `(${tText})`
-	traitText.setAttribute('class', 'choiceTraitTText')
+	traitText.setAttribute('class', styleT)
 	choiceObject.appendChild(traitText)
 	choiceObject.setAttribute('class', style)
 	choiceObject.action = action
@@ -305,7 +307,7 @@ function GetStyleSuffix()
 		return 'Void'
 	if(level >= 100)
 		return 'Lava'
-	return ''
+	return 'Default'
 }
 
 function ScrollToBottom()
@@ -315,7 +317,7 @@ function ScrollToBottom()
 
 function FlashScreen(color)
 {
-	let flashScreen = document.createElement("DIV")
+	let flashScreen = document.createElement('DIV')
 	flashScreen.setAttribute('class', 'flashScreen')
 	flashScreen.style.backgroundColor = color
 	document.body.appendChild(flashScreen)
@@ -351,8 +353,82 @@ function LoadFloatMessage(text)
 
 function NewFloatMessage(text)
 {
-	let FMObject = document.createElement("DIV")
+	let FMObject = document.createElement('DIV')
 	FMObject.textContent = text
 	FMObject.setAttribute('class', 'floatMessage')
 	return FMObject
+}
+
+function LoadTraitPanel()
+{
+	CharacterTraitPanel = NewTraitPanel()
+	document.body.appendChild(CharacterTraitPanel)
+	CollapseTraitPanel()
+	return CharacterTraitPanel
+}
+
+function NewTraitPanel()
+{
+	let TPObject = document.createElement('DIV')
+	TPObject.setAttribute('class', 'traitPanel')
+	return TPObject
+}
+
+function UpdateTraitPanel()
+{
+	if(CharacterTraitPanel.expanded)
+	{
+		LoadTraitPanelPage()
+	}
+}
+
+function ExpandTraitPanel()
+{
+	CharacterTraitPanel.page = 1
+	LoadTraitPanelPage()
+	CharacterTraitPanel.style.width = '105%'
+	CharacterTraitPanel.expanded = true
+}
+
+function LoadTraitPanelPage()
+{
+	CharacterTraitPanel.innerHTML = ""
+	for(let i in CharacterTraits)
+	{
+		if(i >= (CharacterTraitPanel.page - 1) * TRAITS_PER_PAGE && i < CharacterTraitPanel.page * TRAITS_PER_PAGE)
+		{
+			let bar = NewTraitBar(CharacterTraits[i])
+			CharacterTraitPanel.appendChild(bar)
+		}
+	}
+	let CButton = NewButton("关闭", () =>
+	{
+		CollapseTraitPanel()
+	})
+	CharacterTraitPanel.append(CButton)
+	if(CharacterTraits.length > TRAITS_PER_PAGE)
+	{
+		let NButton = NewButton("下一页", () =>
+		{
+			CharacterTraitPanel.page++
+			if((CharacterTraitPanel.page - 1) * TRAITS_PER_PAGE > CharacterTraits.length)
+			{
+				CharacterTraitPanel.page = 1
+			}
+			LoadTraitPanelPage()
+		})
+		CharacterTraitPanel.append(NButton)
+	}
+}
+
+function CollapseTraitPanel()
+{
+	CharacterTraitPanel.innerHTML = ""
+	let EButton = NewButton("查看天赋", () =>
+	{
+		ExpandTraitPanel()
+	})
+	CharacterTraitPanel.append(EButton)
+	CharacterTraitPanel.style.width = 'auto'
+	CharacterTraitPanel.expanded = false
 }

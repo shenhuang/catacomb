@@ -77,7 +77,7 @@
 	transition			:	FloatUp 4s linear;
 	animation			:	FloatUp 4s linear;
 }
-.dialog {
+.dialogDefault {
 	background			:	#e0edff;
 	border-radius		:	10px;
 	border				:	5px;
@@ -175,7 +175,7 @@
 	transition			:	VoidToLight 1s ease-in;
 	animation			:	VoidToLight s ease-in;
 }
-.dialogTitle {
+.dialogTitleDefault {
 	text-align			:	center;
 	color				:	black;
 	font-weight			:	bold;
@@ -205,7 +205,7 @@
 	font-size			:	16px;
 	margin				:	20px;
 }
-.dialogContent {
+.dialogContentDefault {
 	text-align			:	left;
 	color				:	black;
 	line-height			:	15px;
@@ -235,7 +235,7 @@
 	font-size			:	14px;
 	margin				:	10px;
 }
-.choice {
+.choiceDefault {
 	background			:	#e0edff;
 	display				:	block;
 	border-radius		:	10px;
@@ -296,7 +296,7 @@
 	font-size			:	14px;
 	margin				:	5px;
 }
-.choiceSelected {
+.choiceSelectedDefault {
 	background			:	#e0edff;
 	display				:	block;
 	border-radius		:	10px;
@@ -351,7 +351,7 @@
 	font-size			:	14px;
 	margin				:	5px;
 }
-.choiceTraitEText {
+.choiceTraitETextDefault {
 	display				:	inline-block;
 	text-align			:	left;
 	color				:	black;
@@ -374,7 +374,7 @@
 	font-family			:	Arial;
 	font-size			:	14px;
 }
-.choiceTraitTText {
+.choiceTraitTTextDefault {
 	display				:	inline-block;
 	text-align			:	left;
 	color				:	#2969b3;
@@ -442,4 +442,22 @@
 	font-family			:	Arial;
 	font-weight			:	bold;
 	margin				:	10px;
+}
+.traitPanel {
+	z-index				:	101;
+	position			:	fixed;
+	top					:	0%;
+	right				:	0%;
+	transform-origin	:	top right;
+	transform			:	scale(0.8);
+	max-width			:	600px;
+	background			:	rgb(61, 61, 61);
+	border-radius		:	10px;
+	line-height			:	30px;
+	padding				: 	15px;
+	text-align			:	center;
+	color				:	white;
+	font-family			:	Arial;
+	font-weight			:	bold;
+	margin				:	20px;
 }
