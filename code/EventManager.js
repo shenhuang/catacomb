@@ -91,7 +91,7 @@ function LogEvent(event)
 
 function LoadEvent(event)
 {
-    return LoadEventDialog(`第${level}层`, event["描述"])
+    return LoadEventDialog(`第${level}${GameConfig["层数名"]}`, event["描述"])
 }
 
 function GetNextEvent()

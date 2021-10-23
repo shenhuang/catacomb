@@ -1,5 +1,5 @@
-//Autogen by dataconv.py on 2021-10-22 19:01:15.755191
-var GAMESTART = {
+//Autogen by dataconv.py on 2021-10-23 18:27:59.116778
+var LOADCONFIG = {
 	[2] : {
 		"类别" : "标题",
 		"内容" : "卡塔窟",
