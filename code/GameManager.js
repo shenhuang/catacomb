@@ -5,7 +5,7 @@ function LoadGame()
     ProcessConfigFiles()
     InitTraits()
     LoadTraits()
-    LoadButton("开始冒险", () => {
+    LoadButton(GameConfig["开始按钮"], () => {
 		ClearPage()
         CharacterInit()
         EventInit()
