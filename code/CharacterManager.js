@@ -127,7 +127,7 @@ function UpdateHP(delta, flashScreen = true)
 
 function UpdateHPTextColor(text)
 {
-    if(CharacterStats.HP < CharacterStats.HPMAX / 5)
+    if(CharacterStats.HP < CharacterStats.HPMAX / 10)
     {
         text.style.color = 'red'
     }
