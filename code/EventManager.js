@@ -140,6 +140,10 @@ function ProcessEvent(event)
     {
         ProcessBattle(event["敌人战力"])
     }
+    ProcessTraitsChange(event)
+    ProcessStatsChange(event)
+    ProcessStatusChange(event)
+    ProcessLevelChange(event)
     if(event["好结果"] != null || event["坏结果"] != null)
     {
         ProcessDualResult(event)
@@ -148,10 +152,6 @@ function ProcessEvent(event)
     {
         ProcessChoices(event)
     }
-    ProcessStatsChange(event)
-    ProcessStatusChange(event)
-    ProcessTraitsChange(event)
-    ProcessLevelChange(event)
 }
 
 function ProcessSpecial(event)
