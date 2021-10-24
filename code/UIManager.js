@@ -254,14 +254,14 @@ function NewEventDialogChoice(text, action, style = 'choice' + GetStyleSuffix())
 {
 	let choiceObject = document.createElement('DIV')
 	choiceObject.textContent = text
-	choiceObject.setAttribute('class', style)
 	if(action == null)
 	{
-		choiceObject.style.color = 'gray'
+		choiceObject.setAttribute('class', 'choiceDisabled')
 	}
 	else
 	{
 		choiceObject.action = action
+		choiceObject.setAttribute('class', style)
 		RegisterObjectTouch(choiceObject, choiceObject.action)
 	}
 	return choiceObject

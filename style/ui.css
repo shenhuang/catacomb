@@ -250,6 +250,21 @@
 	font-size			:	14px;
 	margin				:	5px;
 }
+.choiceDisabled {
+	background			:	#494949;
+	display				:	block;
+	border-radius		:	10px;
+	border				:	3px;
+	border-style		:	solid;
+	border-color		:	gray;
+	line-height			:	20px;
+	padding-inline		: 	10px;
+	text-align			:	left;
+	color				:	gray;
+	font-family			:	Arial;
+	font-size			:	14px;
+	margin				:	5px;
+}
 .choiceLava {
 	background			:	#221313;
 	display				:	block;
