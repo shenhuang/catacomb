@@ -1,4 +1,4 @@
-//Autogen by dataconv.py on 2021-10-25 13:52:39.935630
+//Autogen by dataconv.py on 2021-10-25 14:18:13.798632
 var LEVELCONFIG = {
 	[2] : {
 		"最小层数" : 100,
