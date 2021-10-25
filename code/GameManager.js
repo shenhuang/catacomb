@@ -2,7 +2,7 @@ var GameConfig
 
 function LoadGame()
 {
-    LoadButton("制作自己的文字游戏", () => {
+    LoadButton("==> 制作自己的文字游戏 <==", () => {
         window.open("https://github.com/shenhuang/catacomb")
     })
     ProcessConfigFiles()
