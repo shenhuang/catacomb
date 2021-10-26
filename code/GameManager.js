@@ -6,10 +6,21 @@ function LoadGame()
         window.open("https://github.com/shenhuang/catacomb")
     })
     ProcessConfigFiles()
-    InitTraits()
-    LoadTraits()
-    LoadButton(GameConfig["开始按钮"], () => {
-        StartGame()
+    let drawButton = LoadButton(GameConfig["抽卡按钮"], () => {
+        document.body.removeChild(drawButton)
+        let fakeText = LoadText('假装有延迟')
+        fakeText.style.position = 'fixed'
+        fakeText.style.top = '50%'
+        fakeText.style.left = '50%'
+        fakeText.style.transform = 'translateX(-50%)'
+        //优化这段代码赚取20万
+        setTimeout(() => {
+            document.body.removeChild(fakeText)
+            DrawTraits()
+            LoadButton(GameConfig["开始按钮"], () => {
+                StartGame()
+            })
+        }, 800)
     })
 }
 

@@ -39,6 +39,12 @@ const SPECIAL_TRAIT_DEBT = "超前消费"
 const SPECIAL_TRAIT_FUHUOJIA = "咸鱼的庇护"
 const SPECIAL_TRAIT_MINGDAO = "名刀 - 丝袜"
 
+function DrawTraits()
+{
+	InitTraits()
+    LoadTraits()
+}
+
 function InitTraits()
 {
 	SelectedTraits = new Set()
