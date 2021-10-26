@@ -297,17 +297,14 @@ function GetStyleSuffix()
 {
 	if(UI_LIGHT)
 		return 'Light'
+	let style = 'Default'
 	for(let i in LEVELCONFIG)
 	{
 		c = LEVELCONFIG[i]
 		if(level >= c["最小层数"])
-			return c["风格"]
+			style =  c["风格"]
 	}
-	if(level >= 200)
-		return 'Void'
-	if(level >= 100)
-		return 'Lava'
-	return 'Default'
+	return style
 }
 
 function ScrollToBottom()
