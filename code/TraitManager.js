@@ -30,25 +30,9 @@ var traitAttributes = [
 	"每层金币",
 	"每层食物",
 	"战斗受伤%",
+	"中毒概率%",
+	"中毒时间%",
 ]
-
-const SPECIAL_TRAITS_POISON = {
-	//常吃地沟油 中毒概率-10% 中毒时间-25%
-	"常吃地沟油" : {
-		chance	: 0.9,
-		weaken	: 0.75,
-	},
-	//抗毒体质 中毒概率-50% 中毒时间-50%
-	"抗毒体质" : {
-		chance	: 0.5,
-		weaken	: 0.5,
-	},
-	//百毒不侵 不会中毒
-	"百毒不侵" : {
-		chance	: 0,
-		weaken	: 0,
-	},
-}
 
 const SPECIAL_TRAIT_DEBT = "超前消费"
 
@@ -179,7 +163,7 @@ function GetTraitText(trait)
 {
 	let text = trait["名称"]
 	let desc = GetTraitDesc(trait)
-	if(desc != " ()")
+	if(desc != ' ()')
 	{
 		text = text + desc
 	}
@@ -188,29 +172,36 @@ function GetTraitText(trait)
 
 function GetTraitDesc(trait)
 {
-	let desc = " ("
 	if(trait["描述"] != null)
 	{
-		desc = desc + trait["描述"]
-		
+		return`(${trait["描述"]})`
 	}
-	else
+	let descList = ''
+	for(let a of traitAttributes)
 	{
-		for(let i of traitAttributes)
+		if(trait[a] != null)
 		{
-			if(trait[i] != null)
+			let ns = ''
+			let as = ''
+			if(trait[a] >= 0)
 			{
-				desc = desc + i
-				if(trait[i] >= 0)
-				{
-					desc = desc + "+"
-				}
-				desc = desc + trait[i] + " "
+				ns = ns + '+'
 			}
+			if(a.charAt(a.length - 1) == '%')
+			{
+				ns = ns + trait[a] + '%'
+				as = as + a.slice(0, a.length - 1)
+			}
+			else
+			{
+				ns = ns + trait[a]
+				as = as + a
+			}
+			descList = descList + as + ns + ' '
 		}
 	}
-	desc = desc.trimEnd()
-	desc = desc + ")"
+	descList = descList.trimEnd()
+	desc = `(${descList})`
 	return desc
 }
 

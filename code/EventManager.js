@@ -390,13 +390,20 @@ function GetPoisonTraitBias(traits)
     for(let i in traits)
     {
         let trait = traits[i]
-        if(SPECIAL_TRAITS_POISON[trait["名称"]] != null)
+        if(trait["中毒概率%"] != null)
         {
-            c = c * SPECIAL_TRAITS_POISON[trait["名称"]].chance
-            w = w * SPECIAL_TRAITS_POISON[trait["名称"]].weaken
+            c = c + trait["中毒概率%"] / 100
+        }
+        if(trait["中毒时间%"] != null)
+        {
+            w = w + trait["中毒时间%"] / 100
         }
     }
-    return {chance : c, weaken : w}
+    let bias = {
+        chance : Math.max(0, c),
+        weaken : Math.max(0, w),
+    }
+    return bias
 }
 
 function ValidEvent(event)
