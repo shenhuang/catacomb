@@ -312,6 +312,11 @@ function ScrollToBottom()
 	window.scrollTo(0, document.body.scrollHeight)
 }
 
+function ScrollToTop()
+{
+	window.scrollTo(0, 0)
+}
+
 function FlashScreen(color)
 {
 	let flashScreen = document.createElement('DIV')

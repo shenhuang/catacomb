@@ -69,6 +69,7 @@ function ProcessDeath()
         ClearPage()
 		LoadGame()
     })
+    ScrollToTop()
 }
 
 function ProcessWin()
@@ -87,4 +88,5 @@ function ProcessWin()
         ClearPage()
 		LoadGame()
     })
+    ScrollToTop()
 }

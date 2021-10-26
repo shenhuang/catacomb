@@ -29,6 +29,7 @@ var traitAttributes = [
 	"每层体力",
 	"每层金币",
 	"每层食物",
+	"战斗受伤%",
 ]
 
 const SPECIAL_TRAITS_POISON = {
@@ -46,21 +47,6 @@ const SPECIAL_TRAITS_POISON = {
 	"百毒不侵" : {
 		chance	: 0,
 		weaken	: 0,
-	},
-}
-
-const SPECIAL_TRAITS_BATTLEDAMAGE = {
-	"金钟罩" : {
-		bias	: 0.5,
-	},
-	"饕餮宝珠" : {
-		bias	: 0.8,
-	},
-	"抖M" : {
-		bias	: 1.25,
-	},
-	"林妹妹" : {
-		bias	: 1.5,
 	},
 }
 
