@@ -20,7 +20,7 @@ function LoadGame()
             LoadButton(GameConfig["开始按钮"], () => {
                 StartGame()
             })
-        }, 800)
+        }, 500)
     })
 }
 

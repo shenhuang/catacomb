@@ -53,7 +53,16 @@ function InitTraits()
 function LoadTraits()
 {
 	let showTraits = GetShowTraits()
+	showTraits = SortTraitListByRairty(showTraits)
 	return LoadTraitList(showTraits)
+}
+
+function SortTraitListByRairty(traitList)
+{
+	traitList.sort((a, b) => {
+		return b["稀有度"] - a["稀有度"]
+	})
+	return traitList
 }
 
 function LoadTraitList(traitList)
