@@ -434,3 +434,11 @@ function CollapseTraitPanel()
 	CharacterTraitPanel.style.width = 'auto'
 	CharacterTraitPanel.expanded = false
 }
+
+function CenterObject(object)
+{
+    object.style.position = 'fixed'
+    object.style.top = '50%'
+    object.style.left = '50%'
+    object.style.transform = 'translateX(-50%)'
+}

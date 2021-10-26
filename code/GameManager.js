@@ -9,10 +9,7 @@ function LoadGame()
     let drawButton = LoadButton(GameConfig["抽卡按钮"], () => {
         document.body.removeChild(drawButton)
         let fakeText = LoadText('假装有延迟')
-        fakeText.style.position = 'fixed'
-        fakeText.style.top = '50%'
-        fakeText.style.left = '50%'
-        fakeText.style.transform = 'translateX(-50%)'
+        CenterObject(fakeText)
         //优化这段代码赚取20万
         setTimeout(() => {
             document.body.removeChild(fakeText)
@@ -22,6 +19,7 @@ function LoadGame()
             })
         }, 500)
     })
+    CenterObject(drawButton)
 }
 
 function StartGame()
