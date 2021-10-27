@@ -433,7 +433,6 @@
 	border-radius		:	10px;
 	border				:	5px;
 	border-style		:	solid;
-	border-color		:	gray;
 	line-height			:	30px;
 	padding-inline		: 	10px;
 	text-align			:	center;
@@ -448,7 +447,6 @@
 	border-radius		:	10px;
 	border				:	5px;
 	border-style		:	solid;
-	border-color		:	gray;
 	line-height			:	30px;
 	padding-inline		: 	10px;
 	text-align			:	center;
@@ -457,6 +455,58 @@
 	font-family			:	Arial;
 	font-weight			:	bold;
 	margin				:	10px;
+}
+@keyframes RairtySixRainbow {
+	0% {
+		border-color	:	rgb(250, 91, 255);
+	}
+	10% {
+		border-color	:	rgb(255, 129, 91);
+	}
+	20% {
+		border-color	:	rgb(255, 129, 91);
+	}
+	30% {
+		border-color	:	rgb(184, 255, 91);
+	}
+	40% {
+		border-color	:	rgb(184, 255, 91);
+	}
+	50% {
+		border-color	:	rgb(91, 244, 255);
+	}
+	60% {
+		border-color	:	rgb(91, 244, 255);
+	}
+	70% {
+		border-color	:	rgb(143, 142, 255);
+	}
+	80% {
+		border-color	:	rgb(143, 142, 255);
+	}
+	90% {
+		border-color	:	rgb(250, 91, 255);
+	}
+	100% {
+		border-color	:	rgb(250, 91, 255);
+	}
+}
+.barRairty06 {
+	background			:	#3d495b;
+	border-radius		:	10px;
+	border				:	5px;
+	border-style		:	solid;
+	line-height			:	30px;
+	padding-inline		: 	10px;
+	text-align			:	center;
+	color				:	white;
+	font-size			:	10px;
+	font-family			:	Arial;
+	font-weight			:	bold;
+	margin				:	10px;
+	-webkit-transition	:	RairtySixRainbow 0.5s linear infinite;
+	transition			:	RairtySixRainbow 0.5s linear infinite;
+	animation			:	RairtySixRainbow 0.5s linear infinite;
 }
 .traitPanel {
 	z-index				:	101;

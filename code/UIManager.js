@@ -127,10 +127,15 @@ function LoadTraitBar(trait)
 
 function NewTraitBar(trait)
 {
-	let color = traitRairtyColors[trait["稀有度"]]
-	if(color == null || trait["名称"] == null)
+	if(trait["名称"] == null)
 		return
+	let color = traitRairtyColors[trait["稀有度"]]
 	let barObject = LoadBar(GetTraitText(trait), color)
+	if(color == null)
+	{
+		let style = traitRairtyStyles[trait["稀有度"]]
+		barObject.setAttribute('class', style)
+	}
 	return barObject
 }
 

@@ -20,6 +20,10 @@ var traitRairtyColors = {
 	[5] : "#E6BB87",
 }
 
+var traitRairtyStyles = {
+	[6] : "barRairty06",
+}
+
 var traitAttributes = [
 	"体质",
 	"金钱",
@@ -216,11 +220,11 @@ function GetTraitDesc(trait)
 		}
 	}
 	descList = descList.trimEnd()
-	desc = `(${descList})`
+	desc = ` (${descList})`
 	return desc
 }
 
-function SelectTrait(traitObject, select)
+function SelectTrait(traitObject)
 {
 	if(traitObject.sel == true)
 	{
