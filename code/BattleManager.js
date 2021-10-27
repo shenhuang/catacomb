@@ -53,9 +53,9 @@ function GetBattleDamageTraitBias(traits)
     for(let i in traits)
     {
         let trait = traits[i]
-        if(trait["战斗受伤%"] != null)
+        if(trait["战斗损伤%"] != null)
         {
-            b = b * (1 + trait["战斗受伤%"] / 100)
+            b = b * (1 + trait["战斗损伤%"] / 100)
         }
     }
     return Math.max(0, b)

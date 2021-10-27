@@ -33,7 +33,7 @@ var traitAttributes = [
 	"每层体力",
 	"每层金币",
 	"每层食物",
-	"战斗受伤%",
+	"战斗损伤%",
 	"中毒概率%",
 	"中毒时间%",
 ]
@@ -193,7 +193,7 @@ function GetTraitDesc(trait)
 {
 	if(trait["描述"] != null)
 	{
-		return`(${trait["描述"]})`
+		return` (${trait["描述"]})`
 	}
 	let descList = ''
 	for(let a of traitAttributes)
