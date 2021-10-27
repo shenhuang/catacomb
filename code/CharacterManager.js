@@ -31,6 +31,8 @@ function CharacterInit()
     CharacterBoard = LoadCharacterBoard()
     ApplyTraitSelection()
     ApplySelectedTraitStats()
+    EnsurePositiveStats()
+
 }
 
 function InitCharacterStatus()
@@ -60,6 +62,22 @@ function InitCharacterStats()
     CharacterStats.POWER = 100
     CharacterStats.LUCK = 100
     return CharacterStats
+}
+
+function EnsurePositiveStats()
+{
+    for(i in CharacterStats)
+    {
+        CharacterStats[i] = Math.max(CharacterStats[i], 0)    
+    }
+    for(i in CharacterStatsUpdateTable)
+    {
+        if(CharacterStatsUpdateTable[i] != null)
+        {
+            let f = CharacterStatsUpdateTable[i]
+            f(0)
+        }
+    }
 }
 
 function GetCharacterHPString()
@@ -118,8 +136,8 @@ function UpdateHP(delta, flashScreen = true)
     {
         CharacterStats.HP = CharacterStats.HPMAX
     }
-    UpdateHPTextColor(CharacterBoard.CharacterHPText)
     CharacterBoard.CharacterHPText.textContent = GetCharacterHPString()
+    UpdateHPTextColor(CharacterBoard.CharacterHPText)
     if(CharacterStats.HP < 1)
     {
         let sucess = ProcessLethalNegation(delta)
@@ -159,8 +177,8 @@ function UpdateFOOD(delta)
     {
         CharacterStats.FOOD = 0
     }
-    UpdateFoodTextColor(CharacterBoard.CharacterFOODText)
     CharacterBoard.CharacterFOODText.textContent = GetCharacterFOODString()
+    UpdateFoodTextColor(CharacterBoard.CharacterFOODText)
 }
 
 function UpdateFoodTextColor(text)
@@ -201,7 +219,7 @@ function ApplyTraitSelection()
     for(traitObject of SelectedTraits)
     {
         CharacterTraits.push(traitObject.content)
-    }
+    }   
 }
 
 function ApplySelectedTraitStats()
@@ -209,15 +227,6 @@ function ApplySelectedTraitStats()
     for(trait of CharacterTraits)
     {
         ApplyNewTrait(trait)
-    }
-    EnsurePositiveStats()
-}
-
-function EnsurePositiveStats()
-{
-    for(stat of CharacterStats)
-    {
-        stat = Math.max(stat, 0)
     }
 }
 
