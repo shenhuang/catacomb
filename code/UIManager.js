@@ -102,6 +102,20 @@ function NewBoard()
 	return boardObject
 }
 
+function LoadCheatBoard()
+{
+	let cheatBoardObject = NewCheatBoard()
+	document.body.appendChild(cheatBoardObject)
+	return cheatBoardObject
+}
+
+function NewCheatBoard()
+{
+	let cheatBoardObject = document.createElement('DIV')
+	cheatBoardObject.setAttribute('class', 'cheatBoard')
+	return cheatBoardObject
+}
+
 function LoadBar(text, color)
 {
 	let barObject = NewBar(text, color)

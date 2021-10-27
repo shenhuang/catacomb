@@ -68,7 +68,7 @@ function EnableCheatBoard()
         {
             if(CheatBoard == null)
             {
-                LoadCheatBoard()
+                CreateCheatBoard()
             }
             else
             {
@@ -85,11 +85,9 @@ function EnableCheatBoard()
     })
 }
 
-function LoadCheatBoard()
+function CreateCheatBoard()
 {
-    CheatBoard = LoadBoard()
-    CheatBoard.style.top = 0
-    CheatBoard.style.right = 0
+    CheatBoard = LoadCheatBoard()
     CheatBoard.appendChild(NewButton('LEVEL+10', () => {
         IncreaseLevel()
     }))

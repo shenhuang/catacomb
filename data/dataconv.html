@@ -42,7 +42,7 @@
             let jObjects = XLSX.utils.sheet_to_json(readFirstSheetFromWorkbook(workbook))
             let bias = 2
             let jObjectsFixed = {}
-            for(i in jObjects)
+            for(let i in jObjects)
             {
                 jObjectsFixed[parseInt(i) + bias] = jObjects[i]
             }

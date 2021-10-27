@@ -79,12 +79,16 @@ function UpdateEventIDPool()
 
 function LogEventIDPoolInfo(pool)
 {
+    if(!DEBUG_ON)
+        return
     console.log(`currently ${pool.length} events in pool:`)
     console.log(pool)
 }
 
 function LogEvent(event)
 {
+    if(!DEBUG_ON)
+        return
     console.log(`event for level ${level} is:`)
     console.log(event)
 }

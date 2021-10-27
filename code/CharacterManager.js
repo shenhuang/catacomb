@@ -2,7 +2,7 @@ const FOOD_LOSS_PER_TURN = 1
 const HUNGER_HP_LOSS_RATIO = 0.05
 const PROCESS_DEATH_DELAY = 1000
 
-const DEBT_INTEREST_RATE = 1.03
+const DEBT_INTEREST_RATE = 0.03
 const CHARACTER_MAX_DEBT = 3000
 
 var CharacterTraits
@@ -248,7 +248,7 @@ function ProcessCharacterTraits()
 
 function ProcessCharacterDebt()
 {
-    let interest = Math.ceil(CharacterStats.MONEY * DEBT_INTEREST_RATE - CharacterStats.MONEY)
+    let interest = Math.ceil(CharacterStats.MONEY * DEBT_INTEREST_RATE)
     UpdateMONEY(interest)
     if(CharacterStats.MONEY < -CHARACTER_MAX_DEBT)
     {

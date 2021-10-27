@@ -155,7 +155,22 @@ function GetShowTraitsByRairty()
 			stbr[trait["稀有度"]].push(trait)
 		}
 	}
+	LogShowTraitsByRairty(stbr)
 	return stbr
+}
+
+function LogShowTraitsByRairty(pool)
+{
+	if(!DEBUG_ON)
+		return
+	let total = 0
+	for(let i in pool)
+	{
+		total = total + pool[i].length
+	}
+	console.log(`generated following trait pool：`)
+	console.log(pool)
+	console.log(`with a total of ${total} traits`)
 }
 
 function GetRandomTrait(traitList)

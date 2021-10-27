@@ -1,6 +1,21 @@
 .board {
-	z-index				:	100;
+	z-index				:	10;
 	position			:	fixed;
+	background			:	rgb(61, 61, 61);
+	border-radius		:	10px;
+	line-height			:	30px;
+	padding				: 	15px;
+	text-align			:	center;
+	color				:	white;
+	font-family			:	Arial;
+	font-weight			:	bold;
+	margin				:	20px;
+}
+.cheatBoard {
+	z-index				:	999;
+	position			:	fixed;
+	top					:	0;
+	right				:	0;
 	background			:	rgb(61, 61, 61);
 	border-radius		:	10px;
 	line-height			:	30px;
@@ -23,7 +38,7 @@
 	}
 }
 .flashScreen {
-	z-index				:	102;
+	z-index				:	13;
 	position			:	fixed;
 	top					:	0%;
 	left				:	0%;
@@ -60,7 +75,7 @@
 	}
 }
 .floatMessage {
-	z-index				:	101;
+	z-index				:	12;
 	position			:	fixed;
 	left				:	50%;
 	background			:	gray;
@@ -509,7 +524,7 @@
 	animation			:	RairtySixRainbow 0.5s linear infinite;
 }
 .traitPanel {
-	z-index				:	101;
+	z-index				:	11;
 	position			:	fixed;
 	top					:	0%;
 	right				:	0%;

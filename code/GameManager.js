@@ -1,3 +1,5 @@
+const DEBUG_ON = false
+
 var GameConfig
 
 function LoadGame()
@@ -29,7 +31,8 @@ function StartGame()
     CharacterInit()
     EventInit()
     LoadTraitPanel()
-    EnableCheatBoard()
+    if(DEBUG_ON)
+        EnableCheatBoard()
 }
 
 function ProcessConfigFiles()
