@@ -414,11 +414,11 @@ function ExpandTraitPanel()
 function LoadTraitPanelPage()
 {
 	CharacterTraitPanel.innerHTML = ""
-	for(let i in CharacterTraits)
+	for(let i = 0; i < CharacterTraits.length; i++)
 	{
 		if(i >= (CharacterTraitPanel.page - 1) * TRAITS_PER_PAGE && i < CharacterTraitPanel.page * TRAITS_PER_PAGE)
 		{
-			let bar = NewTraitBar(CharacterTraits[i])
+			let bar = NewTraitBar(CharacterTraits[CharacterTraits.length - i - 1])
 			CharacterTraitPanel.appendChild(bar)
 		}
 	}
