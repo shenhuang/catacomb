@@ -180,7 +180,13 @@ function ProcessLevelChange(event)
 
 function ProcessDependency(event)
 {  
-    CurrentEventDialog.appendChild(NewEventDialogContent(event["描述"]))
+    AppendAdditionalString(event["描述"])
+    ScrollToBottom()
+}
+
+function AppendAdditionalString(string)
+{
+    CurrentEventDialog.appendChild(NewEventDialogContent(string))
     ScrollToBottom()
 }
 
@@ -372,13 +378,14 @@ function ProcessPoisonStatus(event)
         let bias = GetPoisonTraitBias(CharacterTraits)
         if(Math.random() > bias.chance)
         {
-            CurrentEventDialog.appendChild(NewEventDialogContent(`你的特殊体质让你免疫了毒素！`))
+            AppendAdditionalString(`你的特殊体质让你免疫了毒素！`)
             return
         }   
         let poison = {
             duration    : Math.floor(event["中毒时间"] * bias.weaken),
             strength    : event["中毒效果"],
         }
+        AppendAdditionalString(`你中毒了，将在之后的${poison.duration}回合内损失共计${poison.duration * poison.strength}点生命！`)
         CharacterStatus.POISON.push(poison)
     }
     else if(event["中毒时间"] != null && event["中毒时间"] == 'CL')

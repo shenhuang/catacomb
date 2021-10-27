@@ -37,12 +37,17 @@ function InitCharacterStatus()
 {
     CharacterStatus = []
     CharacterStatus.ALIVE = true
-    ClearPoison()
     CharacterLife = 0
+    ResetPoisonStatus()
+    ResetSpecialTraits()
+    return CharacterStatus
+}
+
+function ResetSpecialTraits()
+{
     CharacterIsDebtTaker = false
     CharacterHasFuhuojia = false
     CharacterHasMingdao = false
-    return CharacterStatus
 }
 
 function InitCharacterStats()
@@ -205,6 +210,15 @@ function ApplySelectedTraitStats()
     {
         ApplyNewTrait(trait)
     }
+    EnsurePositiveStats()
+}
+
+function EnsurePositiveStats()
+{
+    for(stat of CharacterStats)
+    {
+        stat = Math.max(stat, 0)
+    }
 }
 
 function ProcessCharacter()
@@ -291,6 +305,12 @@ function GetPoisonTotalDamage()
 }
 
 function ClearPoison()
+{
+    FlashScreen('blue')
+    ResetPoisonStatus()
+}
+
+function ResetPoisonStatus()
 {
     CharacterStatus.POISON = []
 }
