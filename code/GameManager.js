@@ -10,6 +10,7 @@ function LoadGame()
         document.body.removeChild(drawButton)
         let fakeText = LoadText('假装有延迟')
         CenterObject(fakeText)
+        HardwareVibrate([200, 100, 200])
         //优化这段代码赚取20万
         setTimeout(() => {
             document.body.removeChild(fakeText)

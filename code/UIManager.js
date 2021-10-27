@@ -442,8 +442,16 @@ function CollapseTraitPanel()
 
 function CenterObject(object)
 {
-    object.style.position = 'fixed'
-    object.style.top = '50%'
-    object.style.left = '50%'
-    object.style.transform = 'translateX(-50%)'
+	object.style.position = 'fixed'
+	object.style.top = '50%'
+	object.style.left = '50%'
+	object.style.transform = 'translateX(-50%)'
+}
+
+function HardwareVibrate(msdata)
+{
+	if('vibrate' in window.navigator)
+	{
+		window.navigator.vibrate(msdata);
+	}
 }
