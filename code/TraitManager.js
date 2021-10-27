@@ -2,6 +2,7 @@ const MAX_SEL_TRAIT = 3
 const MAX_GEN_TRAIT = 10
 
 var SelectedTraits
+var TraitSelLimit
 var CharacterTraitPanel
 
 var traitRairtyWeights = {
@@ -43,6 +44,9 @@ const SPECIAL_TRAIT_DEBT = "超前消费"
 const SPECIAL_TRAIT_FUHUOJIA = "咸鱼的庇护"
 const SPECIAL_TRAIT_MINGDAO = "名刀 - 丝袜"
 
+const SPECIAL_TRAIT_POG = "强欲夜壶"
+const POG_EXTRA_SEL = 2
+
 function DrawTraits()
 {
 	InitTraits()
@@ -51,6 +55,7 @@ function DrawTraits()
 
 function InitTraits()
 {
+	TraitSelLimit = MAX_SEL_TRAIT
 	SelectedTraits = new Set()
 }
 
@@ -246,14 +251,31 @@ function SelectTrait(traitObject)
 		traitObject.div.setAttribute('class', 'barDeselect')
 		traitObject.sel = false
 		SelectedTraits.delete(traitObject)
+		ProcessPOG(traitObject.content, false)
 	}
 	else
 	{
-		if(SelectedTraits.size < MAX_SEL_TRAIT)
+		if(SelectedTraits.size < TraitSelLimit)
 		{
 			traitObject.div.setAttribute('class', 'barSelect')
 			traitObject.sel = true
-			SelectedTraits.add(traitObject)	
+			SelectedTraits.add(traitObject)
+			ProcessPOG(traitObject.content, true)
+		}
+	}
+}
+
+function ProcessPOG(trait, sel)
+{
+	if(trait["名称"] == SPECIAL_TRAIT_POG)
+	{
+		if(sel)
+		{
+			TraitSelLimit += POG_EXTRA_SEL
+		}
+		else
+		{
+			TraitSelLimit -= POG_EXTRA_SEL
 		}
 	}
 }
