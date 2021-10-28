@@ -465,11 +465,3 @@ function CenterObject(object)
 	object.style.left = '50%'
 	object.style.transform = 'translateX(-50%)'
 }
-
-function HardwareVibrate(msdata)
-{
-	if('vibrate' in window.navigator)
-	{
-		window.navigator.vibrate(msdata);
-	}
-}

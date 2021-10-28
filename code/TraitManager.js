@@ -1,6 +1,7 @@
 const MAX_SEL_TRAIT = 3
 const MAX_GEN_TRAIT = 10
 
+var TraitPool
 var SelectedTraits
 var TraitSelLimit
 var CharacterTraitPanel
@@ -47,14 +48,26 @@ const SPECIAL_TRAIT_MINGDAO = "名刀 - 丝袜"
 const SPECIAL_TRAIT_POG = "强欲夜壶"
 const POG_EXTRA_SEL = 2
 
+const SPECIAL_TRAIT_FREEDRAW = "再来十连"
+
 function DrawTraits()
 {
 	InitTraits()
     LoadTraits()
+	LoadStartButton()
+}
+
+function DrawExtraTraits()
+{
+	LoadText("* * * 恭喜抽到再来十连 * * *")
+	RemoveStartButton()
+	LoadTraits()
+	LoadStartButton()
 }
 
 function InitTraits()
 {
+	TraitPool = GetRollTraitsByRairty()
 	TraitSelLimit = MAX_SEL_TRAIT
 	SelectedTraits = new Set()
 }
@@ -63,7 +76,7 @@ function LoadTraits()
 {
 	let rollTraits = GetRollTraits()
 	rollTraits = SortTraitListByRairty(rollTraits)
-	return LoadTraitList(rollTraits)
+	LoadTraitList(rollTraits)
 }
 
 function SortTraitListByRairty(traitList)
@@ -98,7 +111,6 @@ function GetRollTraits()
 {
 	let traitRairtyOdds = GetTraitRairtyOdds(traitRairtyWeights)
 	let thresh = GetTraitRairtyThresh(traitRairtyOdds)
-	let rollTraitsByRairty = GetRollTraitsByRairty()
 	let rollTraits = []
 	for(let i = 0; i < MAX_GEN_TRAIT; i++)
 	{
@@ -111,7 +123,7 @@ function GetRollTraits()
 				rairty = r
 			}
 		}
-		let randomTrait = GetRandomTrait(rollTraitsByRairty[rairty])
+		let randomTrait = GetRandomTrait(TraitPool[rairty])
 		if(randomTrait != null)
 		{
 			rollTraits.push(randomTrait)
@@ -171,11 +183,11 @@ function GetRollTraitsByRairty()
 			stbr[trait["稀有度"]].push(trait)
 		}
 	}
-	LogrollTraitsByRairty(stbr)
+	LogRollTraitsByRairty(stbr)
 	return stbr
 }
 
-function LogrollTraitsByRairty(pool)
+function LogRollTraitsByRairty(pool)
 {
 	if(!DEBUG_ON)
 		return
@@ -262,7 +274,7 @@ function SelectTrait(traitObject)
 		traitObject.div.setAttribute('class', 'barDeselect')
 		traitObject.sel = false
 		SelectedTraits.delete(traitObject)
-		ProcessPOG(traitObject.content, false)
+		ProcessSpecialSelect(traitObject, false)
 	}
 	else
 	{
@@ -271,8 +283,25 @@ function SelectTrait(traitObject)
 			traitObject.div.setAttribute('class', 'barSelect')
 			traitObject.sel = true
 			SelectedTraits.add(traitObject)
-			ProcessPOG(traitObject.content, true)
+			ProcessSpecialSelect(traitObject, true)
 		}
+	}
+}
+
+function ProcessSpecialSelect(traitObject, sel)
+{
+	ProcessFreeDraw(traitObject, sel)
+	ProcessPOG(traitObject.content, sel)
+}
+
+function ProcessFreeDraw(traitObject, sel)
+{
+	let trait = traitObject.content
+	if(trait["名称"] == SPECIAL_TRAIT_FREEDRAW && sel)
+	{
+		document.body.removeChild(traitObject.div)
+		SelectTrait(traitObject)
+		DrawExtraTraits()
 	}
 }
 
