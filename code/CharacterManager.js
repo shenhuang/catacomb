@@ -66,11 +66,11 @@ function InitCharacterStats()
 
 function EnsurePositiveStats()
 {
-    for(i in CharacterStats)
+    for(let i in CharacterStats)
     {
         CharacterStats[i] = Math.max(CharacterStats[i], 0)    
     }
-    for(i in CharacterStatsUpdateTable)
+    for(let i in CharacterStatsUpdateTable)
     {
         if(CharacterStatsUpdateTable[i] != null)
         {
@@ -216,7 +216,7 @@ function UpdateLUCK(delta)
 function ApplyTraitSelection()
 {
     CharacterTraits = []
-    for(traitObject of SelectedTraits)
+    for(let traitObject of SelectedTraits)
     {
         CharacterTraits.push(traitObject.content)
     }   
@@ -224,7 +224,7 @@ function ApplyTraitSelection()
 
 function ApplySelectedTraitStats()
 {
-    for(trait of CharacterTraits)
+    for(let trait of CharacterTraits)
     {
         ApplyNewTrait(trait)
     }
@@ -242,7 +242,7 @@ function ProcessCharacterTraits()
     let DeltaHP = 0
     let DeltaMONEY = 0
     let DeltaFOOD = 0
-    for(t of CharacterTraits)
+    for(let t of CharacterTraits)
     {
         if(t["每层体力"] != null)
         {

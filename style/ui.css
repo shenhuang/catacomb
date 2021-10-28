@@ -155,7 +155,7 @@
 	padding-inline		: 	10px;
 	white-space			:	pre-wrap;
 	text-align			:	center;
-	color				:	rgb(140, 0, 255);
+	color				:	rgb(178, 85, 255);
 	font-family			:	Arial;
 	font-weight			:	bold;
 	margin				:	10px;
@@ -163,8 +163,8 @@
 @keyframes VoidToLight {
 	0% {
 		background		:	#000a36;
-		color			:	rgb(66, 0, 110);
-		border-color	:	rgb(140, 0, 255);
+		color			:	rgb(178, 85, 255);
+		border-color	:	rgb(66, 0, 110);
 	}
 	100% {
 		background		:	#ffffff;
@@ -208,7 +208,7 @@
 }
 .dialogTitleVoid {
 	text-align			:	center;
-	color				:	rgb(140, 0, 255);
+	color				:	rgb(178, 85, 255);
 	font-weight			:	bold;
 	font-size			:	16px;
 	margin				:	20px;
@@ -245,7 +245,7 @@
 }
 .dialogContentVoid {
 	text-align			:	left;
-	color				:	rgb(140, 0, 255);
+	color				:	rgb(178, 85, 255);
 	line-height			:	15px;
 	font-size			:	14px;
 	margin				:	10px;
@@ -306,7 +306,7 @@
 	line-height			:	20px;
 	padding-inline		: 	10px;
 	text-align			:	left;
-	color				:	rgb(140, 0, 255);
+	color				:	rgb(178, 85, 255);
 	font-family			:	Arial;
 	font-size			:	14px;
 	margin				:	5px;
@@ -400,7 +400,7 @@
 .choiceTraitETextVoid {
 	display				:	inline-block;
 	text-align			:	left;
-	color				:	rgb(140, 0, 255);
+	color				:	rgb(178, 85, 255);
 	font-family			:	Arial;
 	font-size			:	14px;
 }

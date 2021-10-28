@@ -1,4 +1,4 @@
-const DEBUG_ON = false
+const DEBUG_ON = true
 
 var GameConfig
 
@@ -77,7 +77,7 @@ function ProcessDeath()
     ScoreBoard.appendChild(NewEventDialogContent(`战斗力：${CharacterStats.POWER}\n`))
     ScoreBoard.appendChild(NewEventDialogContent(`运气：${CharacterStats.LUCK}\n`))
     LoadText(`你在探险中获得了以下天赋`)
-    LoadTraitList(CharacterTraits)
+    LoadTraitList(GetCharacterShowTraits())
     LoadButton("再来一轮", () => {
         ClearPage()
 		LoadGame()
@@ -96,7 +96,7 @@ function ProcessWin()
     ScoreBoard.appendChild(NewEventDialogContent(`战斗力：${CharacterStats.POWER}\n`))
     ScoreBoard.appendChild(NewEventDialogContent(`运气：${CharacterStats.LUCK}\n`))
     LoadText(`你在探险中获得了以下天赋`)
-    LoadTraitList(CharacterTraits)
+    LoadTraitList(GetCharacterShowTraits())
     LoadButton("再来一轮", () => {
         ClearPage()
 		LoadGame()

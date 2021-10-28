@@ -61,9 +61,9 @@ function InitTraits()
 
 function LoadTraits()
 {
-	let showTraits = GetShowTraits()
-	showTraits = SortTraitListByRairty(showTraits)
-	return LoadTraitList(showTraits)
+	let rollTraits = GetRollTraits()
+	rollTraits = SortTraitListByRairty(rollTraits)
+	return LoadTraitList(rollTraits)
 }
 
 function SortTraitListByRairty(traitList)
@@ -94,12 +94,12 @@ function LoadAllTraits()
 	return traitObjects
 }
 
-function GetShowTraits()
+function GetRollTraits()
 {
 	let traitRairtyOdds = GetTraitRairtyOdds(traitRairtyWeights)
 	let thresh = GetTraitRairtyThresh(traitRairtyOdds)
-	let showTraitsByRairty = GetShowTraitsByRairty()
-	let showTraits = []
+	let rollTraitsByRairty = GetRollTraitsByRairty()
+	let rollTraits = []
 	for(let i = 0; i < MAX_GEN_TRAIT; i++)
 	{
 		let randn = Math.random()
@@ -111,11 +111,22 @@ function GetShowTraits()
 				rairty = r
 			}
 		}
-		let randomTrait = GetRandomTrait(showTraitsByRairty[rairty])
+		let randomTrait = GetRandomTrait(rollTraitsByRairty[rairty])
 		if(randomTrait != null)
 		{
-			showTraits.push(randomTrait)
+			rollTraits.push(randomTrait)
 		}
+	}
+	return rollTraits
+}
+
+function GetCharacterShowTraits()
+{
+	let showTraits = []
+	for(let trait of CharacterTraits)
+	{
+		if(trait["不显示"] != 1)
+			showTraits.push(trait)
 	}
 	return showTraits
 }
@@ -147,7 +158,7 @@ function GetTraitRairtyThresh(odds)
 	return thresh
 }
 
-function GetShowTraitsByRairty()
+function GetRollTraitsByRairty()
 {
 	let stbr = {}
 	for(let i in TRAITS)
@@ -160,11 +171,11 @@ function GetShowTraitsByRairty()
 			stbr[trait["稀有度"]].push(trait)
 		}
 	}
-	LogShowTraitsByRairty(stbr)
+	LogrollTraitsByRairty(stbr)
 	return stbr
 }
 
-function LogShowTraitsByRairty(pool)
+function LogrollTraitsByRairty(pool)
 {
 	if(!DEBUG_ON)
 		return
@@ -314,10 +325,12 @@ function AcquireNewTrait(trait)
 {
     if(!CharacterTraits.includes(trait))
     {
-        CurrentEventDialog.appendChild(NewEventDialogContent("你获得了新的天赋："))
-        CurrentEventDialog.appendChild(NewTraitBar(trait))
-        ApplyNewTrait(trait)
-        CharacterTraits.push(trait)
+		ApplyNewTrait(trait)
+		CharacterTraits.push(trait)
+		if(trait["不显示"] == "1")
+			return
+		CurrentEventDialog.appendChild(NewEventDialogContent("你获得了新的天赋："))
+		CurrentEventDialog.appendChild(NewTraitBar(trait))
 		UpdateTraitPanel()
     }
 }

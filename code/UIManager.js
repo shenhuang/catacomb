@@ -143,6 +143,8 @@ function NewTraitBar(trait)
 {
 	if(trait["名称"] == null)
 		return
+	if(trait["不显示"] == "1")
+		return
 	let color = traitRairtyColors[trait["稀有度"]]
 	let barObject = LoadBar(GetTraitText(trait), color)
 	if(color == null)
@@ -414,11 +416,13 @@ function ExpandTraitPanel()
 function LoadTraitPanelPage()
 {
 	CharacterTraitPanel.innerHTML = ""
-	for(let i = 0; i < CharacterTraits.length; i++)
+	let showTraits = GetCharacterShowTraits()
+	for(let i = 0; i < showTraits.length; i++)
 	{
 		if(i >= (CharacterTraitPanel.page - 1) * TRAITS_PER_PAGE && i < CharacterTraitPanel.page * TRAITS_PER_PAGE)
 		{
-			let bar = NewTraitBar(CharacterTraits[CharacterTraits.length - i - 1])
+			let trait = showTraits[showTraits.length - i - 1]
+			let bar = NewTraitBar(trait)
 			CharacterTraitPanel.appendChild(bar)
 		}
 	}
@@ -427,12 +431,12 @@ function LoadTraitPanelPage()
 		CollapseTraitPanel()
 	})
 	CharacterTraitPanel.append(CButton)
-	if(CharacterTraits.length > TRAITS_PER_PAGE)
+	if(showTraits.length > TRAITS_PER_PAGE)
 	{
 		let NButton = NewButton("下一页", () =>
 		{
 			CharacterTraitPanel.page++
-			if((CharacterTraitPanel.page - 1) * TRAITS_PER_PAGE > CharacterTraits.length)
+			if((CharacterTraitPanel.page - 1) * TRAITS_PER_PAGE > showTraits.length)
 			{
 				CharacterTraitPanel.page = 1
 			}
