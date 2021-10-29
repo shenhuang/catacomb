@@ -276,7 +276,7 @@ function ProcessCharacterDebt()
     if(CharacterStats.MONEY < -CHARACTER_MAX_DEBT)
     {
         setTimeout(() => {
-            alert(`你的负债超过${CHARACTER_MAX_DEBT}，讨债公司前来强制让你卖血还债！`)
+            ProcessAlertString(`你的负债超过${CHARACTER_MAX_DEBT}，讨债公司前来强制让你卖血还债！`)
         }, 1)
         UpdateHP(Math.ceil(CharacterStats.MONEY / 100))
         UpdateMONEY(Math.floor(-CharacterStats.MONEY / 10))
@@ -289,7 +289,7 @@ function ProcessCharacterPoison()
     if(totalDamage > 0)
     {
         setTimeout(() => {
-            alert(`你因为中毒流失了${totalDamage}点体力!`)
+            ProcessAlertString(`你因为中毒流失了${totalDamage}点体力!`)
         }, 1)
         UpdateHP(-totalDamage)
     }
@@ -334,7 +334,7 @@ function ProcessCharacterHunger()
     {
         let totalDamage = Math.round((FOOD_LOSS_PER_TURN - CharacterStats.FOOD) * (HUNGER_HP_LOSS_RATIO * CharacterStats.HPMAX))
         setTimeout(() => {
-            alert(`你因为饥饿流失了${totalDamage}点体力!`)
+            ProcessAlertString(`你因为饥饿流失了${totalDamage}点体力!`)
         }, 1)
         UpdateHP(-totalDamage)
         CharacterStats.FOOD = 0
@@ -347,7 +347,7 @@ function CharacterDead()
     if(!revived)
     {
         setTimeout(() => {
-            alert(`你💀了!`)
+            ProcessAlertString(`你💀了!`)
             setTimeout(() => {
                 ProcessDeath()
             }, PROCESS_DEATH_DELAY)
@@ -368,7 +368,7 @@ function ProcessCharacterRevive()
     if(CharacterHasFuhuojia)
     {
         setTimeout(() => {
-            alert(`你使用了复活甲，现在半血复活！`)
+            ProcessAlertString(`你使用了复活甲，现在半血复活！`)
             UpdateHP(Math.ceil(CharacterStats.HPMAX / 2) - CharacterStats.HP)
             CharacterHasFuhuojia = false
         }, 1)
@@ -378,7 +378,7 @@ function ProcessCharacterRevive()
     {
         setTimeout(() => {
             CharacterLife--
-            alert(`你失去了一条命，还剩${CharacterLife + 1}条命！`)
+            ProcessAlertString(`你失去了一条命，还剩${CharacterLife + 1}条命！`)
             UpdateHP(CharacterStats.HPMAX - CharacterStats.HP)
         }, 1)
         return true
@@ -391,7 +391,7 @@ function ProcessLethalNegation(delta)
     if(CharacterHasMingdao)
     {
         setTimeout(() => {
-            alert(`你触发了名刀被动，免除此次致命伤害！`)
+            ProcessAlertString(`你触发了名刀被动，免除此次致命伤害！`)
         }, 1)
         CharacterStats.HP = CharacterStats.HP - delta
         CharacterHasMingdao = false

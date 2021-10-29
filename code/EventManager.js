@@ -537,3 +537,9 @@ function ProcessCowKillReward()
     let e = EVENTS[COW_REWARD_EVENT]
     ProcessEvent(e)
 }
+
+function ProcessAlertString(alertString)
+{
+    alert(alertString)
+    CurrentEventDialog.appendChild(NewEventDialogContent(alertString))
+}

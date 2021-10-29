@@ -1,4 +1,4 @@
-const DEBUG_ON = false
+const DEBUG_ON = true
 
 var GameConfig
 var StartButton
