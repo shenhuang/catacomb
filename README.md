@@ -18,6 +18,8 @@
 
 ## 帮助文档
 
+[简单范例](https://github.com/shenhuang/catacomb/blob/main/help/%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE.pdf)
+
 [简单教程](https://github.com/shenhuang/catacomb/blob/main/help/%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.md)
 
 [剧情配置](https://github.com/shenhuang/catacomb/blob/main/help/%E5%89%A7%E6%83%85%E4%BA%8B%E4%BB%B6%E9%85%8D%E7%BD%AE%E8%A7%84%E5%88%99.md)
