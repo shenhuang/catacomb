@@ -1,8 +1,8 @@
-//Autogen by dataconv.py on 2021-10-29 18:17:39.448113
+//Autogen by dataconv.py on 2021-10-29 18:25:33.117350
 var LOADCONFIG = {
 	[2] : {
 		"类别" : "标题",
-		"内容" : "卡塔窟",
+		"内容" : "METACOMB",
 	},
 	[3] : {
 		"类别" : "欢迎语",
