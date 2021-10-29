@@ -6,18 +6,11 @@ const MAX_LEVEL = 255
 
 const EVENT_MARK_COUNT = 3
 
-const LEVEL_REACH_EVENTS = {
-    [0]    : 361,
-    [50]   : 357,
-    [100]  : 358,
-    [200]  : 359,
-    [255]  : 360,
-}
-
 var level
 var EventIDPool
 var CurrentEventDialog
 var EVENT_PENDING
+var LEVEL_REACH_EVENTS
 
 var CowsKilled
 
@@ -29,10 +22,32 @@ function EventInit()
     CurrentEventDialog = null
     EVENT_PENDING = false
     CowsKilled = 0
+    ProcessEventsConfigs()
     RegisterScreenTouch(() => {
         if(!EVENT_PENDING)
             NextEvent()
     })
+}
+
+function ProcessEventsConfigs()
+{
+    ProcessFixedEventsConfig()
+}
+
+function ProcessFixedEventsConfig()
+{
+    LEVEL_REACH_EVENTS = {}
+    for(let i in FIXEDEVENTSCONFIG)
+    {
+        let config = FIXEDEVENTSCONFIG[i]
+        if(config["事件"] != null)
+        {
+            if(config["层数"] != null)
+            {
+                LEVEL_REACH_EVENTS[config["层数"]] = config["事件"]
+            }
+        } 
+    }
 }
 
 function NextEvent()
