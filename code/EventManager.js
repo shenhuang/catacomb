@@ -542,4 +542,5 @@ function ProcessAlertString(alertString)
 {
     alert(alertString)
     CurrentEventDialog.appendChild(NewEventDialogContent(alertString))
+    ScrollToBottom()
 }
