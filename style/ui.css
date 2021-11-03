@@ -109,12 +109,12 @@
 }
 @keyframes Lava {
 	0% {
-		color			:	rgb(218, 33, 0);
-		border-color	:	rgb(129, 9, 0);
+		color			:	rgb(255, 188, 188);
+		border-color	:	rgb(187, 12, 0);
 	}
 	60% {
-		color			:	rgb(218, 33, 0);
-		border-color	:	rgb(129, 9, 0);
+		color			:	rgb(255, 188, 188);
+		border-color	:	rgb(187, 12, 0);
 	}
 	70% {
 		color			:	rgb(41, 31, 31);
@@ -125,8 +125,8 @@
 		border-color	:	rgb(48, 24, 24);
 	}
 	100% {
-		color			:	rgb(218, 33, 0);
-		border-color	:	rgb(129, 9, 0);
+		color			:	rgb(255, 188, 188);
+		border-color	:	rgb(187, 12, 0);
 	}
 }
 .dialogLava {
