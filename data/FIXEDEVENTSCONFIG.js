@@ -1,4 +1,4 @@
-//Autogen by dataconv.py on 2021-11-04 00:31:13.080991
+//Autogen by dataconv.py on 2021-11-04 00:34:32.175102
 var FIXEDEVENTSCONFIG = {
 	[2] : {
 		"层数" : 0,
