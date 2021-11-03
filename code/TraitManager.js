@@ -262,9 +262,23 @@ function GetTraitDesc(trait)
 			descList = descList + as + ns + ' '
 		}
 	}
-	descList = descList.trimEnd()
+	descList = RemoveEndingWhiteSpace(descList)
 	desc = ` (${descList})`
 	return desc
+}
+
+function RemoveEndingWhiteSpace(string)
+{
+	let newString = ''
+	let contentStart = false
+	for(let i = string.length - 1; i >=0; i--)
+	{
+		if(string.charAt(i) != ' ')
+			contentStart = true
+		if(contentStart)
+			newString = string.charAt(i) + newString
+	}
+	return newString
 }
 
 function SelectTrait(traitObject)
