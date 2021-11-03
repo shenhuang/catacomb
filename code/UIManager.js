@@ -6,7 +6,8 @@ const FLOAT_MESSAGE_ASCEND_SPEED = 1
 
 const FLASH_SCREEN_DURATION = 500
 
-const DEBOUNCE_TIME = 300
+const SCREEN_DEBOUNCE_TIME = 200
+const OBJECT_DEBOUNCE_TIME = 300
 
 const TRAITS_PER_PAGE = 10
 
@@ -19,13 +20,13 @@ function ClearPage()
 	document.body.innerHTML = ""
 }
 
-function debounce(func){
+function debounce(func, time){
 	let timer
 	return (...args) => {
 		clearTimeout(timer)
 		timer = setTimeout(() => {
 			func.apply(this, args)
-		}, DEBOUNCE_TIME)
+		}, time)
 	}
 }
 
@@ -34,11 +35,11 @@ function RegisterScreenTouch(f, o = false)
 	f = debounce(f)
 	if(IS_TOUCH_DEVICE)
 	{
-		window.addEventListener('touchstart', f, {once : o})
+		window.addEventListener('touchstart', f, {once : o}, SCREEN_DEBOUNCE_TIME)
 	}
 	else
 	{
-		window.addEventListener('click', f, {once : o})
+		window.addEventListener('click', f, {once : o}, SCREEN_DEBOUNCE_TIME)
 	}
 }
 
@@ -48,11 +49,11 @@ function RegisterObjectTouch(obj, f, o = false)
 	obj.action = f
 	if(IS_TOUCH_DEVICE)
 	{
-		obj.addEventListener('touchstart', f, {once : o})
+		obj.addEventListener('touchstart', f, {once : o}, OBJECT_DEBOUNCE_TIME)
 	}
 	else
 	{
-		obj.addEventListener('click', f, {once : o})
+		obj.addEventListener('click', f, {once : o}, OBJECT_DEBOUNCE_TIME)
 	}
 }
 
