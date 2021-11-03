@@ -296,6 +296,7 @@ function LoadChoiceEvents(events, eventsTrait)
         return
     EVENT_PENDING = true
     let choiceObjectList = []
+    let hasValidChoice = false
     for(let i in events)
     {
         let event = events[i]
@@ -311,6 +312,7 @@ function LoadChoiceEvents(events, eventsTrait)
                     ProcessEvent(event)
                 }, 1)
             }
+            hasValidChoice = true
         }
         let choiceObject = NewEventDialogChoice(event["名称"], action)
         choiceObjectList.push(choiceObject)
@@ -320,7 +322,7 @@ function LoadChoiceEvents(events, eventsTrait)
     {
         let event = eventsTrait[i].event
         let trait = eventsTrait[i].trait
-        let choiceObject = NewEventTraitDialogChoice(event["名称"], trait["名称"], () => {
+        let action = () => {
             setTimeout(() => {
                 for(let j in choiceObjectList)
                 {
@@ -328,9 +330,16 @@ function LoadChoiceEvents(events, eventsTrait)
                 }
                 ProcessEvent(event)
             }, 1)
-        })
+        }
+        hasValidChoice = true
+        let choiceObject = NewEventTraitDialogChoice(event["名称"], trait["名称"], action)
         choiceObjectList.push(choiceObject)
         CurrentEventDialog.appendChild(choiceObject)       
+    }
+    if(hasValidChoice == false)
+    {
+        ProcessAlertString(`你没有别的选择，只能离开`)
+        EVENT_PENDING = false
     }
     ScrollToBottom()
 }
