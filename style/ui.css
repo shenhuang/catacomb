@@ -500,7 +500,7 @@
 		border-color	:	rgb(143, 142, 255);
 	}
 	90% {
-		border-color	:	rgb(250, 91, 255);
+		border-color	:	rgb(102, 91, 255);
 	}
 	100% {
 		border-color	:	rgb(250, 91, 255);
@@ -519,9 +519,9 @@
 	font-family			:	Arial;
 	font-weight			:	bold;
 	margin				:	10px;
-	-webkit-transition	:	RairtySixRainbow 0.5s linear infinite;
-	transition			:	RairtySixRainbow 0.5s linear infinite;
-	animation			:	RairtySixRainbow 0.5s linear infinite;
+	-webkit-transition	:	RairtySixRainbow 0.25s linear infinite;
+	transition			:	RairtySixRainbow 0.25s linear infinite;
+	animation			:	RairtySixRainbow 0.25s linear infinite;
 }
 .traitPanel {
 	z-index				:	11;

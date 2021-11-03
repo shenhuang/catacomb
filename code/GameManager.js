@@ -1,4 +1,4 @@
-const DEBUG_ON = true
+const DEBUG_ON = false
 
 var GameConfig
 var StartButton
@@ -36,6 +36,7 @@ function RemoveStartButton()
 
 function StartGame()
 {
+    TraitSelLimit = 0
     ClearPage()
     CharacterInit()
     EventInit()

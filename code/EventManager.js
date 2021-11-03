@@ -540,7 +540,7 @@ function ProcessCowKillReward()
 
 function ProcessAlertString(alertString)
 {
-    alert(alertString)
+    //alert(alertString)
     CurrentEventDialog.appendChild(NewEventDialogContent(alertString))
     ScrollToBottom()
 }
