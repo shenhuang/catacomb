@@ -351,8 +351,8 @@ function ProcessStatsChange(event)
     {
         if(event[n] != null)
         {
-            let c = GetStatChange(event[n])
-            let f = CharacterStatsUpdateTable[n]  
+            let c = GetStatChange(event[n], CharacterStats[CharacterStatsUpdateTable[n].stat])
+            let f = CharacterStatsUpdateTable[n].func
             f(c)
             StatsChangeString += `${n}${c > 0 ? '+' : ''}${c}\n`
         }
@@ -362,7 +362,7 @@ function ProcessStatsChange(event)
         setTimeout(() => {LoadFloatMessage(StatsChangeString)}, 1)
 }
 
-function GetStatChange(changeData)
+function GetStatChange(changeData, stat)
 {
     if(typeof(changeData) == 'number')
         return changeData
@@ -375,9 +375,25 @@ function GetStatChange(changeData)
         EnsureDeath()
         return -1 * CharacterStats.HP
     }
-    let changeRange = changeData.split(',').map(Number)
+    let changeRange = changeData.split(',')
+    for(let i in changeRange)
+    {
+        changeRange[i] = ReplaceStatPercentage(changeRange[i], stat)
+    }
+    if(changeRange.length <= 1)
+        return changeRange[0]
     let change = Math.round(changeRange[0] + Math.random() * (changeRange[1] - changeRange[0]))
     return change
+}
+
+function ReplaceStatPercentage(s, max)
+{
+    if(typeof(s) == 'string' && s.charAt(s.length - 1) == 'P')
+    {
+        let v = parseInt(s.slice(0, s.length - 1))
+        return v * max / 100
+    }
+    return parseInt(s)
 }
 
 function ProcessStatusChange(event)

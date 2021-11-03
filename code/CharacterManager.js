@@ -16,12 +16,30 @@ var CharacterHasFuhuojia
 var CharacterHasMingdao
 
 var CharacterStatsUpdateTable = {
-    ["体力上限"] : UpdateHPMAX,
-    ["体力"] : UpdateHP,
-    ["金钱"] : UpdateMONEY,
-    ["食物"] : UpdateFOOD,
-    ["战斗力"] : UpdatePOWER,
-    ["运气"] : UpdateLUCK,
+    ["体力上限"] : {
+        func : UpdateHPMAX,
+        stat : "HPMAX",
+    },
+    ["体力"] : {
+        func : UpdateHP,
+        stat : "HPMAX",
+    },
+    ["金钱"] : {
+        func : UpdateMONEY,
+        stat : "MONEY",
+    },
+    ["食物"] : {
+        func : UpdateFOOD,
+        stat : "FOOD",
+    },
+    ["战斗力"] : {
+        func : UpdatePOWER,
+        stat : "POWER",
+    },
+    ["运气"] : {
+        func : UpdateLUCK,
+        stat : "LUCK",
+    }
 }
 
 function CharacterInit()
@@ -74,7 +92,7 @@ function EnsurePositiveStats()
     {
         if(CharacterStatsUpdateTable[i] != null)
         {
-            let f = CharacterStatsUpdateTable[i]
+            let f = CharacterStatsUpdateTable[i].func
             f(0)
         }
     }
@@ -219,7 +237,7 @@ function ApplyTraitSelection()
     for(let traitObject of SelectedTraits)
     {
         CharacterTraits.push(traitObject.content)
-    }   
+    }
 }
 
 function ApplySelectedTraitStats()
@@ -235,6 +253,10 @@ function ProcessCharacter()
     ProcessCharacterTraits()
     ProcessCharacterPoison()
     ProcessCharacterHunger()
+    if(CharacterIsDebtTaker && CharacterStats.MONEY < 0)
+    {
+        ProcessCharacterDebt()
+    }
 }
 
 function ProcessCharacterTraits()
@@ -255,10 +277,6 @@ function ProcessCharacterTraits()
         if(CharacterStats.FOOD > 0 && t["每层食物"] != null)
         {
             DeltaFOOD = t["每层食物"]
-        }
-        if(CharacterIsDebtTaker && CharacterStats.MONEY < 0)
-        {
-            ProcessCharacterDebt()
         }
     }
     if(DeltaHP != 0)
