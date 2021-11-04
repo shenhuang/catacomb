@@ -296,7 +296,7 @@ function ProcessCharacterDebt()
         setTimeout(() => {
             ProcessAlertString(`你的负债超过${CHARACTER_MAX_DEBT}，讨债公司前来强制让你卖血还债！`)
         }, 1)
-        UpdateHP(Math.ceil(CharacterStats.MONEY / 100))
+        UpdateHP(Math.ceil(CharacterStats.HPMAX * CharacterStats.MONEY / 10000))
         UpdateMONEY(Math.floor(-CharacterStats.MONEY / 10))
     }
 }

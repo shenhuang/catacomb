@@ -1,4 +1,4 @@
-//Autogen by dataconv.py on 2021-11-04 11:26:37.769744
+//Autogen by dataconv.py on 2021-11-04 11:39:51.244692
 var GAMECONFIG = {
 	[2] : {
 		"属性" : "抽卡按钮",
