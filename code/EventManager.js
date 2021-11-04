@@ -8,8 +8,9 @@ const EVENT_MARK_COUNT = 3
 
 var level
 var EventIDPool
+var EventStack
 var CurrentEventDialog
-var EVENT_PENDING
+var ACTION_PENDING
 var LEVEL_REACH_EVENTS
 
 var CowsKilled
@@ -19,12 +20,13 @@ function EventInit()
     UI_LIGHT = false
     level = -1  
     EventIDPool = []
+    EventStack = []
     CurrentEventDialog = null
-    EVENT_PENDING = false
+    ACTION_PENDING = false
     CowsKilled = 0
     ProcessEventsConfigs()
     RegisterScreenTouch(() => {
-        if(!EVENT_PENDING)
+        if(!ACTION_PENDING)
             NextEvent()
     })
 }
@@ -108,6 +110,32 @@ function LogEvent(event)
     console.log(event)
 }
 
+function PushEventStack(event)
+{
+    EventStack.push(event)
+    LogEventStack()
+}
+
+function PopEventStack()
+{
+    let event = EventStack.pop()
+    LogEventStack()
+    return event
+}
+
+function HasParentEvent()
+{
+    return EventStack != null && EventStack.length > 0
+}
+
+function LogEventStack()
+{
+    if(!DEBUG_ON)
+        return
+    console.log(`current event stack:`)
+    console.log(EventStack)
+}
+
 function LoadEvent(event)
 {
     return LoadEventDialog(`第${level}${GameConfig["层"]}`, event["描述"])
@@ -144,7 +172,7 @@ function ProcessEvent(event)
     LogEvent(event)
     if(!CharacterStatus.ALIVE)
         return
-    EVENT_PENDING = false
+    ACTION_PENDING = false
     if(event == null)
     {
         console.error("NULL EVENT ENCOUNTERED!!!")
@@ -152,7 +180,7 @@ function ProcessEvent(event)
     }
     if(event["依赖"] != null)
     {
-        ProcessDependency(event)
+        ProcessDependentEvent(event)
     }
     ProcessSpecial(event)
     if(event["敌人战力"] != null)
@@ -163,14 +191,46 @@ function ProcessEvent(event)
     ProcessStatsChange(event)
     ProcessStatusChange(event)
     ProcessLevelChange(event)
+    if(event["子事件"] != null)
+    {
+        ProcessChildEvent(event)
+        return
+    }
+    ProcessDependencies(event)
+}
+
+function ProcessChildEvent(event)
+{
+    ACTION_PENDING = true
+    PushEventStack(event)
+    let childEvent = EVENTS[event["子事件"]]
+    OnNextAction(() => {
+        ProcessEvent(childEvent)
+    })
+}
+
+function ProcessParentEvent()
+{
+    if(HasParentEvent() == false)
+        return
+    ACTION_PENDING = true
+    let parentEvent = PopEventStack()
+    ProcessDependencies(parentEvent)
+}
+
+function ProcessDependencies(event)
+{
     if(event["好结果"] != null || event["坏结果"] != null)
     {
         ProcessDualResult(event)
+        return
     }
-    else if(event["选项"] != null || event["天赋选项"] != null)
+    if(event["选项"] != null || event["天赋选项"] != null)
     {
         ProcessChoices(event)
+        return
     }
+    ProcessParentEvent()
 }
 
 function ProcessSpecial(event)
@@ -193,7 +253,7 @@ function ProcessLevelChange(event)
     }
 }
 
-function ProcessDependency(event)
+function ProcessDependentEvent(event)
 {  
     AppendAdditionalString(event["描述"])
     ScrollToBottom()
@@ -207,18 +267,22 @@ function AppendAdditionalString(string)
 
 function ProcessDualResult(event)
 {
-    EVENT_PENDING = true
+    ACTION_PENDING = true
     let result = GetEventResult(event)
+    OnNextAction(() => {
+        ProcessEvent(result)
+        if(event["好结果"] == 'WIN')
+        {
+            ProcessWin()
+        }
+    })
+}
+
+function OnNextAction(action)
+{
     RegisterScreenTouch(() => {
-        setTimeout(() => {
-            ProcessEvent(result)
-            if(event["好结果"] == 'WIN')
-            {
-                ProcessWin()
-            }
-        }, 1)
+        setTimeout(action, 1)
     }, true)
-    
 }
 
 function GetEventResult(event)
@@ -294,7 +358,7 @@ function LoadChoiceEvents(events, eventsTrait)
         return
     if(events.length == 0 && eventsTrait.length == 0)
         return
-    EVENT_PENDING = true
+    ACTION_PENDING = true
     let choiceObjectList = []
     let hasValidChoice = false
     for(let i in events)
@@ -339,7 +403,7 @@ function LoadChoiceEvents(events, eventsTrait)
     if(hasValidChoice == false)
     {
         ProcessAlertString(`你没有别的选择，只能离开`)
-        EVENT_PENDING = false
+        ACTION_PENDING = false
     }
     ScrollToBottom()
 }

@@ -100,10 +100,10 @@ function CreateCheatBoard()
     CheatBoard.appendChild(NewButton('MAXHP-100', () => {
         DecreaseMaxHP()
     }))
-    CheatBoard.appendChild(NewButton('HP+100', () => {
+    CheatBoard.appendChild(NewButton('CURHP+100', () => {
         IncreaseHP()
     }))
-    CheatBoard.appendChild(NewButton('HP-100', () => {
+    CheatBoard.appendChild(NewButton('CURHP-100', () => {
         DecreaseHP()
     }))
     CheatBoard.appendChild(NewButton('CASH+100', () => {

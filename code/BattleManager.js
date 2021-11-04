@@ -3,20 +3,20 @@ function ProcessBattle(enemyPower)
     let enemyPowerValue = GetEnemyPowerValue(enemyPower)
     EVENT_PENDING = true
     BATTLE_PENDING = true
-    RegisterScreenTouch(() => {
-            let HPLoss = GetBattleHPLoss(enemyPowerValue)
-            if(HPLoss <= 0)
-            {
-                CurrentEventDialog.appendChild(NewEventDialogContent(`敌人根本不是对手，你毫发无损！`))
-            }
-            else
-            {
-                CurrentEventDialog.appendChild(NewEventDialogContent(`你在战斗中受到了${HPLoss}点伤害！`))
-                UpdateHP(-HPLoss)
-            }
-            ScrollToBottom()
-            EVENT_PENDING = false
-    }, true)
+    OnNextAction(() => {
+        let HPLoss = GetBattleHPLoss(enemyPowerValue)
+        if(HPLoss <= 0)
+        {
+            CurrentEventDialog.appendChild(NewEventDialogContent(`敌人根本不是对手，你毫发无损！`))
+        }
+        else
+        {
+            CurrentEventDialog.appendChild(NewEventDialogContent(`你在战斗中受到了${HPLoss}点伤害！`))
+            UpdateHP(-HPLoss)
+        }
+        ScrollToBottom()
+        EVENT_PENDING = false
+    })
 }
 
 function GetEnemyPowerValue(enemyPower)
