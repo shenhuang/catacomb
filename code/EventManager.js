@@ -243,6 +243,24 @@ function ProcessSpecial(event)
     {
         ProcessCowKill()
     }
+    if(event["描述"] == "开始测量你当前的战斗力……")
+    {
+        ProcessShowPower()
+    }
+    if(event["描述"] == "开始计算你当前的运气……")
+    {
+        ProcessShowLuck()
+    }
+}
+
+function ProcessShowPower()
+{
+    AppendAdditionalString(`你当前的战斗力为：${CharacterStats.POWER}`)
+}
+
+function ProcessShowLuck()
+{
+    AppendAdditionalString(`你当前的运气为：${CharacterStats.LUCK}`)
 }
 
 function ProcessLevelChange(event)
@@ -256,7 +274,6 @@ function ProcessLevelChange(event)
 function ProcessDependentEvent(event)
 {  
     AppendAdditionalString(event["描述"])
-    ScrollToBottom()
 }
 
 function AppendAdditionalString(string)
