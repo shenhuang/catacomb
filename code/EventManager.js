@@ -615,7 +615,7 @@ function ValidSubEvent(event)
 function ProcessCowKill()
 {
     CowsKilled++
-    if(CowsKilled >= REWARD_COWS_KILLED)
+    if(CowsKilled == REWARD_COWS_KILLED)
     {
         ProcessCowKillReward()
     }
