@@ -559,10 +559,6 @@ function ValidSubEvent(event)
         return false
     if(event["最大生命"] < CharacterStats.HP)
         return false
-    if(event["%最小生命"] > CharacterStats.HP * 100 / CharacterStats.HPMAX)
-        return false
-    if(event["%最大生命"] < CharacterStats.HP * 100 / CharacterStats.HPMAX)
-        return false
     if(event["最小金钱"] > CharacterStats.MONEY && !CharacterIsDebtTaker)
         return false
     if(event["最大金钱"] < CharacterStats.MONEY)

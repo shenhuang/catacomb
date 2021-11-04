@@ -1,4 +1,4 @@
-//Autogen by dataconv.py on 2021-11-04 15:26:10.541195
+//Autogen by dataconv.py on 2021-11-04 16:27:14.171157
 var TRAITS = {
 	[2] : {
 		"名称" : "身体健康",
