@@ -69,16 +69,35 @@ function NextEvent()
     }
     UpdateEventIDPool()
     let e = GetNextEvent()
-    CurrentEventDialog = LoadEvent(e)
-    ProcessEvent(e)
+    ProcessNewEvent(e)
     ProcessCharacter()
+}
+
+function ProcessNewEvent(event)
+{
+    CurrentEventDialog = LoadEvent(event)
+    ProcessEvent(event)
 }
 
 function ProcessLevelReach(l)
 {
-    let e = EVENTS[LEVEL_REACH_EVENTS[l]]
-    CurrentEventDialog = LoadEvent(e)
-    ProcessEvent(e)
+    let eids = LEVEL_REACH_EVENTS[l]
+    if(typeof(eids) == 'number')
+    {
+        let e = EVENTS[eid]
+        ProcessNewEvent(e)
+        return
+    }
+    eids = eids.split(',').map(Number)
+    for(let i in eids)
+    {
+        let e = EVENTS[eid]
+        if(ValidEvent(e))
+        {
+            ProcessNewEvent(e)
+            return
+        }
+    }
 }
 
 function UpdateEventIDPool()
