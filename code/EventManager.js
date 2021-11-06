@@ -486,10 +486,45 @@ function ProcessTraitsChange(event)
 {
     if(event["获得天赋"] != null)
     {
-        let trait = TRAITS[event["获得天赋"]]
-        AcquireNewTrait(trait)
+        let traitIDs = event["获得天赋"]
+        ProcessTraitsGain(traitIDs)
+    }
+    if(event["失去天赋"] != null)
+    {
+        let traitIDs = event["失去天赋"]
+        ProcessTraitsLose(traitIDs)
     }
     ScrollToBottom()
+}
+
+function ProcessTraitsGain(ids)
+{
+    if(typeof(ids) == 'number')
+    {
+        AcquireNewTrait(TRAITS[ids])
+        return
+    }    
+    ids = ids.split(',').map(Number)
+    for(let i in ids)
+    {
+        let trait = TRAITS[ids[i]]
+        AcquireNewTrait(trait)
+    }
+}
+
+function ProcessTraitsLose(ids)
+{
+    if(typeof(ids) == 'number')
+    {
+        AbandonOldTrait(TRAITS[ids])
+        return
+    }
+    ids = ids.split(',').map(Number)
+    for(let i in ids)
+    {
+        let trait = TRAITS[ids[i]]
+        AbandonOldTrait(trait)
+    }
 }
 
 function ProcessPoisonStatus(event)

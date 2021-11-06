@@ -244,7 +244,7 @@ function ApplySelectedTraitStats()
 {
     for(let trait of CharacterTraits)
     {
-        ApplyNewTrait(trait)
+        ApplyTraitGain(trait)
     }
 }
 

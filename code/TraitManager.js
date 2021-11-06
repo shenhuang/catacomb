@@ -334,10 +334,47 @@ function ProcessPOG(trait, sel)
 	}
 }
 
-function ApplyNewTrait(trait)
+function AcquireNewTrait(trait)
+{
+    if(!CharacterTraits.includes(trait))
+    {
+		ApplyTraitGain(trait)
+		CharacterTraits.push(trait)
+		if(trait["不显示"] == "1")
+			return
+		CurrentEventDialog.appendChild(NewEventDialogContent("你获得了新的天赋："))
+		CurrentEventDialog.appendChild(NewTraitBar(trait))
+		UpdateTraitPanel()
+    }
+}
+
+function AbandonOldTrait(trait)
+{
+    if(CharacterTraits.includes(trait))
+    {
+		ApplyTraitLose(trait)
+		let i = CharacterTraits.indexOf(trait)
+		CharacterTraits.splice(i, 1)
+		if(trait["不显示"] == "1")
+			return
+		CurrentEventDialog.appendChild(NewEventDialogContent("你失去了你的天赋："))
+		CurrentEventDialog.appendChild(NewTraitBar(trait))
+		UpdateTraitPanel()
+    }
+}
+
+function ApplyTraitGain(trait)
 {
 	ApplyTraitStats(trait)
 	ApplyTraitSpecial(trait)
+	LogCharacterTraits()
+}
+
+function ApplyTraitLose(trait)
+{
+	RevertTraitStats(trait)
+	RevertTraitSpecial(trait)
+	LogCharacterTraits()
 }
 
 function ApplyTraitStats(trait)
@@ -364,18 +401,28 @@ function ApplyTraitStats(trait)
 	}    
 }
 
-function AcquireNewTrait(trait)
+function RevertTraitStats(trait)
 {
-    if(!CharacterTraits.includes(trait))
-    {
-		ApplyNewTrait(trait)
-		CharacterTraits.push(trait)
-		if(trait["不显示"] == "1")
-			return
-		CurrentEventDialog.appendChild(NewEventDialogContent("你获得了新的天赋："))
-		CurrentEventDialog.appendChild(NewTraitBar(trait))
-		UpdateTraitPanel()
-    }
+	if(trait["体质"] != null)
+	{
+		UpdateHPMAX(-trait["体质"], false)
+	}
+	if(trait["金钱"] != null)
+	{
+		UpdateMONEY(-trait["金钱"])
+	}
+	if(trait["食物"] != null)
+	{
+		UpdateFOOD(-trait["食物"])
+	}
+	if(trait["战斗力"] != null)
+	{
+		UpdatePOWER(-trait["战斗力"])
+	}
+	if(trait["运气"] != null)
+	{
+		UpdateLUCK(-trait["运气"])
+	}    
 }
 
 function ApplyTraitSpecial(trait)
@@ -396,4 +443,32 @@ function ApplyTraitSpecial(trait)
 	{
 		CharacterHasMingdao = true
 	}
+}
+
+function RevertTraitSpecial(trait)
+{
+    if(trait["额外生命"] != null)
+    {
+        CharacterLife -= trait["额外生命"]
+    }
+	if(SPECIAL_TRAIT_DEBT == trait["名称"])
+	{
+		CharacterIsDebtTaker = false
+	}
+	if(SPECIAL_TRAIT_FUHUOJIA == trait["名称"])
+	{
+		CharacterHasFuhuojia = false
+	}
+	if(SPECIAL_TRAIT_MINGDAO == trait["名称"])
+	{
+		CharacterHasMingdao = false
+	}
+}
+
+function LogCharacterTraits()
+{
+    if(!DEBUG_ON)
+        return
+	console.log(`current character traits:`)
+	console.log(CharacterTraits)
 }
