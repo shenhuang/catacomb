@@ -22,7 +22,7 @@
 
 [简单教程](https://github.com/shenhuang/catacomb/blob/main/help/%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.md)
 
-[剧情配置](https://github.com/shenhuang/catacomb/blob/main/help/%E5%89%A7%E6%83%85%E4%BA%8B%E4%BB%B6%E9%85%8D%E7%BD%AE%E8%A7%84%E5%88%99.md)
+[数据生成教程](https://github.com/shenhuang/catacomb/blob/main/help/%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.md)
 
 我在将项目初步完成后会慢慢补齐相关的帮助和教学内容。
 
@@ -46,9 +46,9 @@
 
 目前的未来计划是：
 
-- 完善游戏的后续内容。
-
 - 完善帮助文档。
+
+- 增加一些新资料片。
 
 - 完善核心算法及功能，例如随机事件选取逻辑。
 
