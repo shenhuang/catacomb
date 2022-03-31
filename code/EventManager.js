@@ -84,14 +84,14 @@ function ProcessLevelReach(l)
     let eids = LEVEL_REACH_EVENTS[l]
     if(typeof(eids) == 'number')
     {
-        let e = EVENTS[eid]
+        let e = EVENTS[eids]
         ProcessNewEvent(e)
         return
     }
     eids = eids.split(',').map(Number)
     for(let i in eids)
     {
-        let e = EVENTS[eid]
+        let e = EVENTS[i]
         if(ValidEvent(e))
         {
             ProcessNewEvent(e)
